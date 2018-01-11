@@ -1,0 +1,26 @@
+@import '~@angular/material/theming';
+@import 'nbs-theme';
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+@include mat-core;
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$nbs-app-primary-palette: mat-palette($nbs-purple-map, A700, 600, A400);
+$nbs-app-action-palette:  mat-palette($nbs-blue-map, A700, A400, 600);
+
+// The warn palette is optional (defaults to red).
+$nbs-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$nbs-app-theme: mat-light-theme($nbs-app-primary-palette, $nbs-app-action-palette, $nbs-app-warn);
+$nbs-inverted-theme: mat-light-theme($nbs-app-action-palette, $nbs-app-primary-palette, $nbs-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($nbs-app-theme);
+@include mat-tabs-theme($nbs-inverted-theme);
+@include mat-form-field-theme($nbs-inverted-theme);
+@include mat-select-theme($nbs-inverted-theme);

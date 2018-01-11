@@ -1,9 +1,10 @@
-﻿import { Component, OnInit, OnDestroy, Inject, ViewEncapsulation, RendererFactory2, PLATFORM_ID, Injector } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewEncapsulation, RendererFactory2, PLATFORM_ID, Injector } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, PRIMARY_OUTLET } from '@angular/router';
 import { Meta, Title, DOCUMENT, MetaDefinition } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 import { isPlatformServer } from '@angular/common';
 import { LinkService } from './shared/link.service';
+import { AppService } from './services/app.service';
 
 // i18n support
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +14,7 @@ import { REQUEST } from '@nguniversal/aspnetcore-engine';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    encapsulation: ViewEncapsulation.None
+   // encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -25,6 +26,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private routerSub$: Subscription;
     private request;
 
+    public showMenu: boolean = false;
+
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
@@ -32,7 +35,8 @@ export class AppComponent implements OnInit, OnDestroy {
         private meta: Meta,
         private linkService: LinkService,
         public translate: TranslateService,
-        private injector: Injector
+        private injector: Injector,
+        private appService: AppService
     ) {
         // this language will be used as a fallback when a translation isn't found in the current language
         translate.setDefaultLang('en');
@@ -45,6 +49,10 @@ export class AppComponent implements OnInit, OnDestroy {
         console.log(`What's our REQUEST Object look like?`);
         console.log(`The Request object only really exists on the Server, but on the Browser we can at least see Cookies`);
         console.log(this.request);
+
+      this.appService.sideNavShown$.subscribe((value) => {
+        this.showMenu = value;
+      });
     }
 
     ngOnInit() {
@@ -93,6 +101,14 @@ export class AppComponent implements OnInit, OnDestroy {
         for (let i = 0; i < linksData.length; i++) {
             this.linkService.addTag(linksData[i]);
         }
+    }
+
+    public onNavClose() {
+        this.appService.showSideNav(false);
+    }
+
+    public onNavOpen() {
+        this.appService.showSideNav(true);
     }
 
 }

@@ -1,0 +1,43 @@
+.expandable-list {
+  .expandable-list-item {
+    background: fade-out($nbs-text, .95);
+    height: 60px;
+    margin: 4px 0;
+
+    &:first-of-type {
+      margin-top: 2px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .expandable-list-item--title {
+      font-size: 1rem;
+    }
+
+    .expandable-list-item-title {
+      height: 60px;
+
+      .expandable-list-item__dropdown-chevron-line1,
+      .expandable-list-item__dropdown-chevron-line2 {
+        stroke: $white;
+      }
+    }
+
+    .expandable-list-item-content {
+      font-size: 1rem;
+      padding: 0;
+
+      nbs-nav-menu-item {
+        background: fade-out($nbs-text, .95);
+        padding-left: 32px;
+
+        &:active,
+        &:hover {
+          background: $nbs-accent;
+        }
+      }
+    }
+  }
+}

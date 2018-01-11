@@ -1,0 +1,60 @@
+@import '../../../assets/styles/Utilities/utilities_collection';
+
+$hamburger-line-bg-color: #ecf0f1;
+
+:host {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.hamburger {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  .line {
+    background-color: $hamburger-line-bg-color;
+    display: block;
+    height: 2px;
+    margin: 5px auto;
+    transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+    width: 20px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .label {
+    color: $white;
+    padding-left: 5px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.active {
+  .line {
+    &:nth-child(1) {
+      @include transform(translateY(7px) rotate(45deg));
+    }
+
+    &:nth-child(2) {
+      @include transform(translateX(-200%));
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      @include transform(translateY(-7px) rotate(-45deg));
+    }
+  }
+}

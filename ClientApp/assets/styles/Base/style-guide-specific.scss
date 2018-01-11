@@ -1,0 +1,46 @@
+[layout='row'] {
+  flex-flow: row nowrap;
+
+  > * {
+    &:last-child {
+      margin-right: 0;
+      padding-right: 0;
+      border-right: 0;
+
+      @media (max-width: $screen-tablet) {
+        border-bottom: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        flex: 1 0 100%;
+      }
+    }
+  }
+
+  @media (max-width: $screen-tablet) {
+    flex-flow: row wrap;
+  }
+}
+
+.flex-1,
+.flex-2 {
+  position: relative;
+  flex: 1 0 30%;
+  margin-right: 2rem;
+  padding-right: 2rem;
+  border-right: 1px solid $nbs-grey;
+  max-width: 100%;
+
+  @media (max-width: $screen-tablet) {
+    flex: 1 0 100%;
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid $nbs-grey;
+  }
+}
+
+.flex-2 {
+  flex: 2 0 60%;
+}

@@ -1,0 +1,37 @@
+.cdk-overlay-pane {
+  margin: 0 !important;
+}
+
+.mat-menu-panel {
+  border-radius: 3px;
+
+  .mat-menu-content {
+    padding: 0 !important;
+
+    .mat-menu-item {
+      color: $nbs-grey-mid;
+
+      &:hover,
+      &:focus {
+        &:not([disabled]) {
+          background-color: $nbs-grey-3;
+        }
+      }
+
+      mat-icon {
+        color: inherit;
+        height: rem(20px);
+        position: relative;
+        top: 3px;
+        vertical-align: baseline;
+        width: rem(20px);
+
+        + span {
+          font-size: 1rem;
+          font-weight: 400;
+          vertical-align: baseline;
+        }
+      }
+    }
+  }
+}

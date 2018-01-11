@@ -1,0 +1,19 @@
+@import '../Mixins/positioning';
+
+@keyframes scale-bounce {
+  0% {
+    @include transform(scale(.8));
+  }
+
+  50% {
+    @include transform(scale(1.1));
+  }
+
+  75% {
+    @include transform(scale(.85));
+  }
+
+  100% {
+    @include transform(scale(1));
+  }
+}

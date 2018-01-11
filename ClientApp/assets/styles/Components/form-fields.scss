@@ -1,0 +1,71 @@
+.filter {
+  flex: 1 0;
+  max-width: 400px;
+
+  .mat-input-element {
+    padding: 0 30px 5px 0;
+  }
+
+  mat-icon {
+    color: $nbs-grey;
+    height: 1.1rem;
+    position: absolute;
+    right: 0;
+    top: 4px;
+  }
+
+  input {
+    &:focus {
+      + mat-icon {
+        color: $nbs-action;
+      }
+    }
+  }
+}
+
+.mat-form-field {
+  width: auto;
+}
+
+.table-header {
+  .filter {
+    transition: 1s flex linear, 1s margin linear;
+
+    @media (max-width: $screen-mobile) {
+      flex: 0 0 0%;
+      width: 1.1rem;
+      margin-right: 1rem;
+
+      mat-icon {
+        top: 12px;
+        color: $nbs-action;
+      }
+
+      .mat-input-placeholder-wrapper {
+        display: none;
+      }
+
+      .mat-input-underline {
+        display: none;
+      }
+
+      &.mat-focused {
+        flex: 1 0 100%;
+        width: 100%;
+        margin-right: 0;
+
+        mat-icon {
+          top: 4px;
+        }
+
+        .mat-input-placeholder-wrapper {
+          display: inherit;
+        }
+
+        .mat-input-underline {
+          display: inherit;
+        }
+      }
+    }
+  }
+}

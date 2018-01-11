@@ -1,0 +1,23 @@
+// Font Colours
+.font-purple {
+  color: $nbs-core;
+}
+
+.font-action-blue {
+  color: $nbs-accent;
+}
+
+// Background Colours
+.bg-purple {
+  background-color: $nbs-core;
+}
+
+.highlight-warn {
+  &:hover {
+    color: $warn-colour;
+  }
+}
+
+.nbs-background-dark-gradient {
+  @include nbs-background-dark-graduated;
+}

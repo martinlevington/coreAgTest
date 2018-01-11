@@ -1,0 +1,61 @@
+@import "../../../assets/styles/Utilities/utilities_collection";
+
+$sidenav-width: rem(300px);
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.guide-container {
+  @include component-setup;
+}
+
+header {
+  display: flex;
+  position: relative;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 60px;
+  padding: 0 1rem;
+  color: $white;
+  background-color: $nbs-core;
+
+  nbs-menu-toggle,
+  .spacer {
+    flex: 1 0 20%;
+  }
+
+  .logo-wrapper {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row nowrap;
+    align-items: center;
+    position: relative;
+
+    .logo {
+      height: rem(40);
+      width: rem(40);
+      @include dynamic-size(width height, 28, 35);
+    }
+
+    .product {
+      @include hide-tablet(inline-block);
+      margin: 0 0 0 rem(5px);
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+  }
+}
+
+mat-sidenav-container {
+  background-color: transparent;
+
+  mat-sidenav {
+    background-color: $white;
+    width: rem(280px);
+  }
+}

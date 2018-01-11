@@ -1,0 +1,19 @@
+// sass-lint:disable no-important, nesting-depth
+
+.mat-form-field {
+  font-size: 1rem;
+}
+
+.mat-form-field-underline,
+.mat-select-underline {
+  background-color: fade-out($black, .8);
+}
+
+.mat-select-trigger {
+  color: $nbs-text;
+  font-size: 1rem;
+}
+
+.mat-option {
+  font-size: 1rem;
+}

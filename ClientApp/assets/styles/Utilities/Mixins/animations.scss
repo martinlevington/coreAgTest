@@ -1,0 +1,12 @@
+@import '../Animations/animations_collection';
+
+@mixin animation-grow($timing: .8s, $style: ease-out) {
+  animation: grow $timing $style;
+  animation-iteration-count: 1;
+}
+
+@mixin animation-scale-bounce($timing: .5s, $style: ease-out) {
+  animation: scale-bounce $timing $style;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}

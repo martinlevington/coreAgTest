@@ -1,0 +1,7 @@
+@import '../Mixins/mixin_collection';
+
+// sass-lint:disable no-important, nesting-depth
+
+.no-shadow {
+  @include box-shadow-none-important;
+}

@@ -1,0 +1,150 @@
+@mixin nbs-grid($gap: 1rem, $columns: 12, $sizing: 1fr) {
+  display: grid;
+  grid-gap: $gap;
+  grid-template-columns: repeat($columns, $sizing);
+
+  @media (max-width: $screen-tablet) {
+    grid-gap: 1rem;
+  }
+}
+
+@mixin tile-grid {
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+}
+
+@mixin grid-one-column {
+  grid-template-columns: 1fr;
+}
+
+@mixin grid-two-column {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@mixin grid-three-column {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@mixin grid-four-column {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@mixin grid-five-column {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@mixin grid-six-column {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+@mixin grid-seven-column {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+@mixin grid-eight-column {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+@mixin grid-nine-column {
+  grid-template-columns: repeat(9, 1fr);
+}
+
+@mixin grid-ten-column {
+  grid-template-columns: repeat(10, 1fr);
+}
+
+@mixin grid-eleven-column {
+  grid-template-columns: repeat(11, 1fr);
+}
+
+@mixin grid-item-span-1 {
+  grid-column-end: span 1;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-2 {
+  grid-column-end: span 2;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-3 {
+  grid-column-end: span 3;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-4 {
+  grid-column-end: span 4;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-5 {
+  grid-column-end: span 5;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-6 {
+  grid-column-end: span 6;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-7 {
+  grid-column-end: span 7;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-8 {
+  grid-column-end: span 8;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-9 {
+  grid-column-end: span 9;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-10 {
+  grid-column-end: span 10;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-11 {
+  grid-column-end: span 11;
+
+  @media (max-width: $screen-mobile) {
+    grid-column-end: span 12;
+  }
+}
+
+@mixin grid-item-span-12 {
+  grid-column-end: span 12;
+}

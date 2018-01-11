@@ -1,0 +1,12 @@
+@mixin nbs-background-dark-graduated {
+  $grad-1: rgba(89, 75, 99, 1);
+  $grad-2: rgba(96, 72, 90, 1);
+  $grad-3: rgba(97, 78, 105, 1);
+  $grad-4: rgba(96, 72, 90, 1);
+  $grad-5: rgba(48, 51, 50, 1);
+  $grad-6: rgba(89, 75, 99, 1);
+
+  background:
+  url('/assets/img/nbs-pattern-left-anchor.png') no-repeat bottom left,
+  linear-gradient(135deg, $grad-1 0%, $grad-2 21%, $grad-3 46%, $grad-4 66%, $grad-5 100%), $grad-6;
+}

@@ -1,0 +1,33 @@
+// sass-lint:disable no-important
+
+@mixin box-shadow($horizontal-length, $vertical-length, $blur-radius, $spread-radius, $colour, $fade: 0) {
+  box-shadow: $horizontal-length $vertical-length $blur-radius $spread-radius fade-out($colour, $fade);
+}
+
+@mixin box-shadow-none {
+  box-shadow: none;
+}
+
+@mixin box-shadow-none-important {
+  box-shadow: none !important;
+}
+
+@mixin transition($speed, $animation, $property) {
+  transition: $property $speed $animation;
+}
+
+@mixin transition-delay($time) {
+  transition-delay: $time;
+}
+
+@mixin no-transition($important: null) {
+  transition: none $important;
+}
+
+@mixin colour-fade($colour, $fade) {
+  background-color: $colour;
+
+  &.transparency {
+    background-color: fade-out($white, $fade);
+  }
+}

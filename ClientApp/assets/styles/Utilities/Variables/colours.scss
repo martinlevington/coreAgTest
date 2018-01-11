@@ -1,0 +1,26 @@
+// Declare standard NBS colours
+$nbs-core: #592d5e;
+$nbs-core-1: #816186;
+$nbs-core-2: #ad95af;
+$nbs-core-3: #d5cbd6;
+
+$nbs-grey: #dbe0de;
+$nbs-grey-1: #dddee0;
+$nbs-grey-2: #e8eae9;
+$nbs-grey-3: #f3f5f4;
+$nbs-grey-mid: #888;
+$nbs-grey-dark: #222;
+
+$nbs-accent: #00b9d7;
+$nbs-action: #39b1c8;
+
+$nbs-font: 'azo-sans-web', 'azo sans', Arial;
+$nbs-text: #333;
+
+$white: #fff;
+$black: #000;
+
+$warn-colour: #f00;
+
+$black-87-opacity: fade-out($black, .13);
+$white-87-opacity: fade-out($white, .13);

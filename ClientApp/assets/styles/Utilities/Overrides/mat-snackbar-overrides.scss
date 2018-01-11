@@ -1,0 +1,22 @@
+// sass-lint:disable no-important, nesting-depth
+
+.mat-snack-bar-container {
+  background: fade-out($nbs-action, .65);
+  border-radius: 2px 2px 0 0 !important;
+  box-sizing: border-box !important;
+  color: $nbs-text;
+  max-width: 1100px !important;
+
+  button {
+    color: $nbs-action;
+    font-weight: 600;
+  }
+
+  &.error {
+    background: fade-out($warn-colour, .65);
+
+    button {
+      color: $warn-colour;
+    }
+  }
+}

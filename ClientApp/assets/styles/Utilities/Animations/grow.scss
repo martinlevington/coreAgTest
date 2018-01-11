@@ -1,0 +1,19 @@
+@import '../Mixins/positioning';
+
+@keyframes grow {
+  0% {
+    @include transform(scale(0));
+    bottom: -100%;
+  }
+
+  50% {
+    @include transform(scale(1.5));
+    bottom: -100%;
+  }
+
+  100% {
+    @include transform(scale(1.5));
+    bottom: -100%;
+    opacity: 0;
+  }
+}

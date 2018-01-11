@@ -1,0 +1,26 @@
+// sass-lint:disable no-important, nesting-depth
+
+button {
+  line-height: 42px;
+
+  &.mat-raised-button {
+    @include box-shadow-none;
+    @include transition(.5s, ease, all);
+
+    &:not([disabled]) {
+      &:hover {
+        @include box-shadow(0, 0, 8px, 0, fade-out($black, .6));
+      }
+    }
+  }
+
+  &.mat-fab {
+    @include transform(scale(.8));
+
+    &:not([disabled]) {
+      &:hover {
+        @include animation-scale-bounce;
+      }
+    }
+  }
+}

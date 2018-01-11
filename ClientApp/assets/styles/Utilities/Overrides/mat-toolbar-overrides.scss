@@ -1,0 +1,19 @@
+mat-toolbar {
+  height: 60px;
+  min-height: 60px;
+
+  .mat-toolbar-row {
+    height: 60px;
+    min-height: 60px;
+
+    nbs-menu-toggle {
+      font-size: 1rem;
+
+      .hamburger {
+        position: relative;
+        top: 0px;
+        transform: none;
+      }
+    }
+  }
+}

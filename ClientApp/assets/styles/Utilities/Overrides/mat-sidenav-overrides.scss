@@ -1,0 +1,10 @@
+.mat-sidenav-backdrop {
+  &.mat-sidenav-shown {
+    position: fixed !important;
+    visibility: visible !important;
+  }
+}
+
+mat-sidenav {
+  @include box-shadow(0, 0, 15px, 5px, fade-out(#000, .7));
+}

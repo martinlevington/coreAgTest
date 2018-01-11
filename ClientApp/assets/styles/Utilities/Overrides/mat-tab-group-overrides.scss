@@ -1,0 +1,17 @@
+// sass-lint:disable no-important, nesting-depth
+
+.mat-tab-body-wrapper {
+  flex: 1 0 auto;
+
+  .mat-tab-body {
+    padding: 2rem 0 0;
+  }
+}
+
+.mat-tab-nav-bar {
+  margin: 0 0 2rem;
+
+  .mat-ink-bar {
+    height: 3px;
+  }
+}

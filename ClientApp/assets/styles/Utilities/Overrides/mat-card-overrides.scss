@@ -1,0 +1,11 @@
+mat-card {
+  margin: 0 !important;
+
+  .mat-card-title {
+    color: $nbs-core;
+  }
+
+  mat-card-content {
+    position: relative;
+  }
+}

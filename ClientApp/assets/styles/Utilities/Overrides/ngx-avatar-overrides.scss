@@ -1,0 +1,21 @@
+nbs-avatar {
+  .avatar-container,
+  img {
+    max-height: rem(40);
+    max-width: rem(40);
+
+    @media (max-width: $screen-tablet) {
+      max-height: rem(30);
+      max-width: rem(30);
+    }
+  }
+
+  .avatar-content {
+    font-size: 1rem !important;
+    line-height: rem(40) !important;
+
+    @media (max-width: $screen-tablet) {
+      line-height: rem(30) !important;
+    }
+  }
+}

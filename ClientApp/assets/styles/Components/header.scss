@@ -1,0 +1,28 @@
+nbs-header,
+.form-header {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row nowrap;
+  align-items: baseline;
+  margin: 0 0 2rem;
+
+  > * {
+    margin-right: 2rem;
+    flex: 1 0 40%;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: $screen-mobile) {
+    flex-flow: row wrap;
+    margin: 0 0 .75rem;
+
+    >* {
+      flex: 1 0 100%;
+      margin-right: 0;
+    }
+  }
+}

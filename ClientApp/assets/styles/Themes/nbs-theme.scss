@@ -1,0 +1,70 @@
+@import '../Utilities/Variables/variables_collection';
+
+$nbs-purple-map: (
+  50: #d9b7dd,
+  100: #bd84c4,
+  200: #a95eb2,
+  300: #804187,
+  400: #6d3773,
+  500: $nbs-core,
+  600: #452349,
+  700: #321935,
+  800: #1e0f20,
+  900: #0b050b,
+  A100: #d9b7dd,
+  A200: #bd84c4,
+  A400: #6d3773,
+  A700: $nbs-core,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $white,
+    400: $white,
+    500: $white-87-opacity,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $white,
+    A400: $white,
+    A700: $white,
+  )
+);
+
+$nbs-blue-map: (
+  50: $white,
+  100: #cdebf1,
+  200: #a1dae5,
+  300: #69c4d5,
+  400: #51bacf,
+  500: $nbs-action,
+  600: #319db1,
+  700: #2b8799,
+  800: #247281,
+  900: #1d5d69,
+  A100: $white,
+  A200: #cdebf1,
+  A400: #51bacf,
+  A700: $nbs-action,
+  contrast: (
+    50:  $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $white,
+    500: $white,
+    600: $white,
+    700: $white,
+    800: $white,
+    900: $white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $white,
+  )
+);
+
+$nbs-app-primary: map_get($nbs-purple-map, 500);
+$nbs-app-accent:  map_get($nbs-blue-map, 500);

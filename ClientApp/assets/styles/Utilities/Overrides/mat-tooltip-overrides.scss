@@ -1,0 +1,16 @@
+.mat-tooltip {
+  @include box-shadow(0, 0, 15px, 5px, fade-out($black, .8));
+  background-color: $white !important;
+  border: 1px solid $nbs-text !important;
+  border-radius: 0 !important;
+  color: $nbs-text !important;
+  font-size: rem(14px);
+  font-weight: 400;
+  padding: rem(20px) !important;
+
+  &.contrast {
+    background-color: $nbs-accent !important;
+    border: 0 !important;
+    color: $white !important;
+  }
+}

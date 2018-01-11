@@ -15,6 +15,13 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app\app-routing.module.ts" />
+    <None Remove="ClientApp\app\components\basic-layout\basic-layout.component.html" />
+    <None Remove="ClientApp\app\components\basic-layout\basic-layout.component.scss" />
+    <None Remove="ClientApp\app\components\basic-layout\basic-layout.component.ts" />
+    <None Remove="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
+    <None Remove="ClientApp\app\modules\nbs-material.module.ts" />
+    <None Remove="ClientApp\app\services\app.service.ts" />
     <None Remove="yarn.lock" />
     <Content Remove="wwwroot\dist\**" />
     <None Remove="ClientApp\dist\**" />
@@ -22,6 +29,15 @@
 
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\basic-layout\basic-layout.component.html" />
+    <TypeScriptCompile Include="ClientApp\app\components\basic-layout\basic-layout.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\basic-layout\basic-layout.component.scss" />
+    <TypeScriptCompile Include="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\modules\nbs-material.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\app.service.ts" />
   </ItemGroup>
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->

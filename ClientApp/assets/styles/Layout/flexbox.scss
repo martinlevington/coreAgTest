@@ -1,0 +1,91 @@
+// Simple Flexbox layout
+
+[layout],
+[layout='column'],
+[layout='row'] {
+  box-sizing: border-box;
+  display: flex;
+}
+
+[layout='column']    { flex-direction: column; }
+[layout='row']       { flex-direction: row;    }
+
+// make this element flex
+[flex]               { flex: 1 0 auto; }
+
+.layout-distribute   { justify-content: space-around; }
+.layout-justify      { justify-content: space-between; }
+.layout-center       { justify-content: center; }
+.layout-end          { justify-content: flex-end; }
+
+.layout-align-center { align-items: center; };
+
+.layout-wrap         { flex-wrap: wrap; }
+.layout-nowrap       { flex-wrap: nowrap; }
+
+.layout-fill {
+  height: 100%;
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+
+.flex-tile-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  > * {
+    flex: 1 0 20%;
+    margin: 0 rem(20) rem(20) 0;
+
+
+    &:nth-of-type(4n) {
+      margin: 0 0 rem(20);
+    }
+
+    &:last-of-type {
+      margin: 0 0 rem(20);
+    }
+
+    @media (max-width: $screen-desktop-small) {
+      flex: 1 0 25%;
+
+      &:nth-of-type(4n) {
+        margin: 0 rem(20) rem(20) 0;
+      }
+
+      &:nth-of-type(3n) {
+        margin: 0 0 rem(20);
+      }
+
+      &:last-of-type {
+        margin: 0 0 rem(20);
+      }
+    }
+
+    @media (max-width: $screen-tablet) {
+      flex: 1 0 40%;
+
+      &:nth-of-type(3n) {
+        margin: 0 rem(20) rem(20) 0;
+      }
+
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+
+      &:last-of-type {
+        margin: 0 0 rem(20);
+      }
+    }
+
+    @media (max-width: $screen-mobile) {
+      flex: 1 0 90%;
+
+      &:nth-of-type(1n) {
+        margin-right: 0;
+      }
+    }
+  }
+}

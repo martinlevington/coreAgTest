@@ -1,0 +1,135 @@
+// sass-lint:disable nesting-depth
+$sidenav-width: 250px;
+// make sure that the application fills the window vertically
+html,
+body {
+  display: block;
+  position: relative;
+  min-height: 100%;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: $white;
+  color: $nbs-text;
+}
+
+body {
+  * {
+    &:not(mat-icon) {
+      box-sizing: border-box;
+    }
+  }
+}
+
+mat-sidenav-container {
+  &.mat-sidenav-container {
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: $white;
+    flex: 1 0;
+    height: 100%;
+
+    .mat-sidenav {
+      @include box-shadow(0, 0, 15px, 5px, fade-out(#000, .7));
+      color: $nbs-text;
+      flex: 1 0;
+      height: 100%;
+      width: $sidenav-width;
+
+      @media (max-width: $screen-mobile) {
+        width: 100%;
+      }
+    }
+
+    .mat-sidenav-content {
+      display: flex;
+      flex: 1 0 100%;
+      flex-flow: column nowrap;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-image: url('./assets/img/nbs-pattern-light.svg');
+      background-position: center -100px;
+      background-repeat: no-repeat;
+      background-size: 400px;
+    }
+  }
+}
+
+hr {
+  border: 1px solid $nbs-grey;
+  border-bottom: 0;
+  margin: 2rem 0;
+}
+
+.padding-top-50 {
+  padding-top: rem(50px);
+  @media (max-width: $screen-mobile) {
+    padding-top: 0;
+  }
+}
+
+app-root {
+  display: block;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+router-outlet {
+  +* {
+    min-height: calc(100vh - 14rem);
+    flex: 1 0 auto;
+
+    // Gets the content inside a nested router outlet, only if
+    // the nested outlet is the first child of its container
+    >router-outlet {
+      &:first-child {
+        +* {
+          min-height: calc(100vh - 14rem);
+          flex: 1 0 auto;
+        }
+      }
+    }
+  }
+}
+
+// This locks the Editor type content in place on the page.
+// Individual components should have their own scroll areas.
+.full-width {
+  +router-outlet {
+    +* {
+      position: absolute;
+      top: 3.75rem;
+      width: 100%;
+      max-width: none;
+      height: calc(100vh - 7.5rem);
+      min-height: 0;
+      flex: 1 0 auto;
+      padding: 0;
+
+      // Gets the content inside a nested router outlet, only if
+      // the nested outlet is the first child of its container
+
+      >router-outlet {
+        &:first-child {
+          +* {
+            position: relative;
+            width: 100%;
+            min-height: 0;
+            flex: 1 0 auto;
+          }
+        }
+      }
+
+      @media (max-width: $screen-tablet) {
+        padding: 0;
+      }
+    }
+  }
+
+  ~nbs-footer {
+    display: none;
+  }
+}

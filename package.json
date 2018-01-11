@@ -1,6 +1,6 @@
 {
-  "name": "angular4-aspnetcore-universal",
-  "version": "1.0.0-rc3",
+  "name": "angular-aspnetcore-universal",
+  "version": "1.0.0",
   "scripts": {
     "lint": "tslint -p tsconfig.json",
     "test": "npm run build:vendor && karma start ClientApp/test/karma.conf.js",
@@ -13,16 +13,19 @@
     "build:prod": "npm run clean && npm run build:vendor -- --env.prod && npm run build:webpack -- --env.prod",
     "build:p": "npm run build:webpack -- --env.prod",
     "build:vendor": "webpack --config webpack.config.vendor.js --progress --color",
-    "clean": "rimraf wwwroot/dist clientapp/dist"
+    "clean": "rimraf wwwroot/dist clientapp/dist",
+    "build": "webpack -d --progress --colors"
   },
   "dependencies": {
     "@angular/animations": "^5.0.0",
+    "@angular/cdk": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/core": "^5.0.0",
     "@angular/forms": "^5.0.0",
     "@angular/http": "^5.0.0",
+    "@angular/material": "^5.0.0",
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/platform-server": "^5.0.0",
@@ -46,6 +49,7 @@
     "expose-loader": "^0.7.3",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
+    "hammerjs": "^2.0.8",
     "html-loader": "^0.5.1",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.2.1",
@@ -88,5 +92,10 @@
     "karma-webpack": "^2.0.3",
     "tslint": "^5.7.0",
     "webpack-bundle-analyzer": "^2.9.0"
+  },
+  "-vs-binding": {
+    "AfterBuild": [
+      "build:dev"
+    ]
   }
 }

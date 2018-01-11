@@ -1,0 +1,90 @@
+// sass-lint:disable nesting-depth
+
+.table-header {
+  display: flex;
+  position: relative;
+  flex: 0 0 auto;
+  flex-flow: row wrap;
+  align-items: stretch;
+  margin: 0 0 1rem;
+
+  // filter has its own styling, no need to include here.
+
+  .controls {
+    display: flex;
+    position: relative;
+    flex: 1 0 20%;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin: 0 0 0 auto;
+    padding: 0 0 0 1rem;
+
+    .layout {
+      display: flex;
+      position: relative;
+      flex-flow: row nowrap;
+      align-items: center;
+      flex: 0 0 auto;
+      margin: 0 1rem 0 auto;
+
+      mat-icon {
+        color: $nbs-grey-mid;
+        margin: .5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+
+        &:hover,
+        &.active {
+          color: $nbs-action;
+        }
+
+        &.active {
+          cursor: default;
+        }
+      }
+    }
+
+    .sort {
+      display: inline-block;
+      position: relative;
+      flex: 1 0 100%;
+      max-width: rem(200px);
+    }
+
+    button {
+      display: inline-block;
+      position: relative;
+      flex: 0 0 auto;
+      margin-left: auto;
+      align-self: center;
+    }
+  }
+
+  @media (max-width: $screen-mobile) {
+    .controls {
+      flex: 1 0 80%;
+      padding: 0;
+
+      .layout {
+        flex: 1 0 20%;
+        padding-left: 0;
+
+        mat-icon {
+          margin-left: 0;
+        }
+      }
+
+      .sort {
+        flex: 1 0 70%;
+        max-width: none;
+      }
+
+      button {
+        width: 100%;
+        max-width: none;
+        margin: 0 auto;
+      }
+    }
+  }
+}

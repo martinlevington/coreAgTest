@@ -1,0 +1,15 @@
+@mixin box-sizing($value: border-box) {
+  box-sizing: $value;
+}
+
+@mixin transform($transform) {
+  transform: $transform;
+}
+
+@mixin shape-square($size, $colour: transparant) {
+  background-color: $colour;
+  display: inline-block;
+  height: $size;
+  position: relative;
+  width: $size;
+}
