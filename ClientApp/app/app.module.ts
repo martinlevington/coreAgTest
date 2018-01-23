@@ -10,7 +10,6 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 
 import { AppService } from './services/app.service';
 
-import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
 // i18n support
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -26,7 +25,7 @@ import { UsersComponent } from './containers/users/users.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { CounterComponent } from './containers/counter/counter.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
-import { NgxBootstrapComponent } from './containers/ngx-bootstrap-demo/ngx-bootstrap.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LinkService } from './shared/link.service';
 import { UserService } from './shared/user.service';
@@ -52,7 +51,6 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
         UserDetailComponent,
         HomeComponent,
         NotFoundComponent,
-        NgxBootstrapComponent
     ],
     imports: [
         CommonModule,
@@ -62,11 +60,10 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
         HttpClientModule,
         TransferHttpCacheModule,
         BrowserTransferStateModule,
-
+        BrowserAnimationsModule,
 
         FormsModule,
-        Ng2BootstrapModule.forRoot(), // You could also split this up if you don't want the Entire Module imported
-
+     
         // i18n support
         TranslateModule.forRoot({
             loader: {

@@ -7,7 +7,16 @@
 // Shared rules[] we need to add
 const sharedModuleRules = [
   // sass
-  { test: /\.scss$/, loaders: ['to-string-loader', 'css-loader', 'sass-loader'] },
+  {
+    test: /\.scss$/,
+    loaders: ['to-string-loader', 'css-loader', 'sass-loader'],
+    exclude: ['/ClientApp/assets/', '/node_modules/']
+  },
+  {
+    test: /\.scss$/,
+    loaders: ['raw-loader', 'sass-loader'],
+    include: ['/ClientApp/assets/']
+  },
   // font-awesome
   { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url-loader?limit=10000' }
 ];

@@ -13,8 +13,11 @@ import { REQUEST } from '@nguniversal/aspnetcore-engine';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-   // encapsulation: ViewEncapsulation.None
+    styleUrls: [
+      './app.component.scss'
+     
+    ],
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -26,7 +29,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private routerSub$: Subscription;
     private request;
 
-    public showMenu: boolean = false;
 
     constructor(
         private router: Router,
@@ -50,9 +52,7 @@ export class AppComponent implements OnInit, OnDestroy {
         console.log(`The Request object only really exists on the Server, but on the Browser we can at least see Cookies`);
         console.log(this.request);
 
-      this.appService.sideNavShown$.subscribe((value) => {
-        this.showMenu = value;
-      });
+   
     }
 
     ngOnInit() {
@@ -103,13 +103,7 @@ export class AppComponent implements OnInit, OnDestroy {
         }
     }
 
-    public onNavClose() {
-        this.appService.showSideNav(false);
-    }
-
-    public onNavOpen() {
-        this.appService.showSideNav(true);
-    }
+ 
 
 }
 
