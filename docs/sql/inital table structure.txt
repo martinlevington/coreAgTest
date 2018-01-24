@@ -1,0 +1,27 @@
+USE [REDS2_Current]
+GO
+
+/****** Object:  Table [aims].[ProfileCompleteness]    Script Date: 24/01/2018 13:54:38 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [aims].[ProfileCompleteness](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CompanyFK] [int] NOT NULL,
+	[Score] [float] NOT NULL,
+	[Explanation] [varchar](max) NULL,
+	[RecordedOn] [datetime] NULL,
+	[RuleVersion] [int] NULL,
+ CONSTRAINT [PK_ProfileCompleteness] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [aims].[ProfileCompleteness] ADD  DEFAULT (getdate()) FOR [RecordedOn]
+GO
+
