@@ -1,0 +1,18 @@
+C:\coding\RPS.Domain\bin\Debug\netcoreapp2.0\RPS.Domain.deps.json
+C:\coding\RPS.Domain\bin\Debug\netcoreapp2.0\RPS.Domain.dll
+C:\coding\RPS.Domain\bin\Debug\netcoreapp2.0\RPS.Domain.pdb
+C:\coding\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.csproj.CoreCompileInputs.cache
+C:\coding\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.AssemblyInfoInputs.cache
+C:\coding\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.AssemblyInfo.cs
+C:\coding\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.dll
+C:\coding\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.pdb
+C:\coding\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.csprojResolveAssemblyReference.cache
+C:\coding\RPS Profile C\RPS.Domain\bin\Debug\netcoreapp2.0\RPS.Domain.deps.json
+C:\coding\RPS Profile C\RPS.Domain\bin\Debug\netcoreapp2.0\RPS.Domain.dll
+C:\coding\RPS Profile C\RPS.Domain\bin\Debug\netcoreapp2.0\RPS.Domain.pdb
+C:\coding\RPS Profile C\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.csprojResolveAssemblyReference.cache
+C:\coding\RPS Profile C\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.csproj.CoreCompileInputs.cache
+C:\coding\RPS Profile C\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.AssemblyInfoInputs.cache
+C:\coding\RPS Profile C\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.AssemblyInfo.cs
+C:\coding\RPS Profile C\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.dll
+C:\coding\RPS Profile C\RPS.Domain\obj\Debug\netcoreapp2.0\RPS.Domain.pdb
