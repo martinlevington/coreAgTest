@@ -18,6 +18,7 @@ public class RemoteIpAddressLoggingMiddleware
 
   public async Task Invoke(HttpContext context)
   {
+
     using (LogContext.PushProperty("Address", context.Connection.RemoteIpAddress))
     {
       await _next.Invoke(context);

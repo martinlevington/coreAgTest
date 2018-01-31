@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using RPS.Presentation.Middleware;
 using RPS.Presentation.Server.Data;
 using Serilog;
 using Serilog.Events;
+using Serilog.Formatting.Json;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace RPS.Presentation
@@ -24,15 +26,17 @@ namespace RPS.Presentation
 
       Log.Logger = new LoggerConfiguration()
         .MinimumLevel.Debug()
-        .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+        .MinimumLevel.Override("Microsoft", LogEventLevel.Debug)
         .Enrich.WithMachineName()
         .Enrich.WithMemoryUsage()
         .Enrich.WithEnvironment("OS")
         .Enrich.WithProperty(new KeyValuePair<string, object>("applicationId", "RPSProfile Completeness"))
    
         .Enrich.FromLogContext()
-  //   .WriteTo
-  //      .ApplicationInsightsEvents("<MyApplicationInsightsInstrumentationKey>")
+          //   .WriteTo
+          //      .ApplicationInsightsEvents("<MyApplicationInsightsInstrumentationKey>")
+        .WriteTo.RollingFile("log-{Date}.txt", retainedFileCountLimit:10, outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}{NewLine}Memory: {MemoryUsage}{NewLine}")
+        .WriteTo.RollingFile(new JsonFormatter(), "log-json-{Date}.txt")
         .WriteTo.Console()
         .CreateLogger();
 
@@ -96,6 +100,8 @@ namespace RPS.Presentation
       loggerFactory.AddDebug();
 
       app.UseStaticFiles();
+      app.UseRemoteIpAddressLoggingMiddleware();
+      app.UseMiddleware<HttpContextLoggingMiddleware>();
 
       DbInitializer.Initialize(context);
 

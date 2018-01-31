@@ -1,0 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+
+namespace RPS.Presentation.Middleware
+{
+  public static class MiddlewareExtensions
+  {
+    public static IApplicationBuilder UseRemoteIpAddressLoggingMiddleware(this IApplicationBuilder builder)
+    {
+      return builder.UseMiddleware<RemoteIpAddressLoggingMiddleware>();
+    }
+  }
+}
