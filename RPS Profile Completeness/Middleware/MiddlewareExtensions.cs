@@ -10,7 +10,7 @@ namespace RPS.Presentation.Middleware
   {
     public static IApplicationBuilder UseRemoteIpAddressLoggingMiddleware(this IApplicationBuilder builder)
     {
-      return builder.UseMiddleware<RemoteIpAddressLoggingMiddleware>();
+      return builder.UseMiddleware<UserLoggingMiddleware>();
     }
   }
 }

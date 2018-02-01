@@ -63,14 +63,19 @@ namespace RPS.Presentation.Middleware
       var request = httpContext.Request;
 
       var result = Log
-        .ForContext("RequestHeaders", request.Headers.ToDictionary(h => h.Key, h => h.Value.ToString()), destructureObjects: true)
-        .ForContext("RequestHost", request.Host)
-        .ForContext("RequestContentType", request.ContentType)
-        .ForContext("RequestHttpContext", request.HttpContext)
-        .ForContext("RequestMethod", request.Method)
-        .ForContext("RequestIsHttps", request.IsHttps)
-        .ForContext("RequestPath", request.Path)
-        .ForContext("RequestProtocol", request.Protocol);
+          .ForContext("RequestHeaders", request.Headers.ToDictionary(h => h.Key, h => h.Value.ToString()),
+            destructureObjects: true)
+          .ForContext("RequestHost", request.Host)
+          .ForContext("RequestContentType", request.ContentType)
+          .ForContext("RequestHttpContext", request.HttpContext)
+          .ForContext("RequestMethod", request.Method)
+          .ForContext("RequestIsHttps", request.IsHttps)
+          .ForContext("RequestPath", request.Path)
+          .ForContext("RequestProtocol", request.Protocol)
+          .ForContext("RequestPathBase", request.PathBase)
+          .ForContext("RequestQuery", request.Query.ToDictionary(h => h.Key, h => h.Value.ToString()),
+            destructureObjects: true)
+        ;
 
       if (request.HasFormContentType)
       {

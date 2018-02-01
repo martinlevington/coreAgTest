@@ -7,22 +7,27 @@ using Serilog.Context;
 
 namespace RPS.Presentation.Middleware
 {
-public class RemoteIpAddressLoggingMiddleware
+public class UserLoggingMiddleware
   {
   private readonly RequestDelegate _next;
 
-  public RemoteIpAddressLoggingMiddleware(RequestDelegate next)
+  public UserLoggingMiddleware(RequestDelegate next)
   {
     _next = next;
   }
 
+
+
+
     public async Task Invoke(HttpContext context)
     {
+      var userName = context.User.Identity.IsAuthenticated ? context.User.Identity.Name : "unknown";
 
-      using (LogContext.PushProperty("Address", context.Connection.RemoteIpAddress))
+      using (LogContext.PushProperty("User", !String.IsNullOrWhiteSpace(userName) ? userName : "unknown"))
       {
         await _next.Invoke(context);
       }
     }
+
   }
 }

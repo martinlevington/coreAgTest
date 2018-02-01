@@ -89,7 +89,7 @@ namespace RPS.Presentation
       // Register the Swagger generator, defining one or more Swagger documents
       services.AddSwaggerGen(c =>
       {
-        c.SwaggerDoc("v1", new Info { Title = "Angular 5.0 Universal & ASP.NET Core advanced starter-kit web API", Version = "v1" });
+        c.SwaggerDoc("v1", new Info { Title = "RPS API", Version = "v1" });
       });
     }
 
@@ -102,6 +102,7 @@ namespace RPS.Presentation
       app.UseStaticFiles();
       app.UseRemoteIpAddressLoggingMiddleware();
       app.UseMiddleware<HttpContextLoggingMiddleware>();
+      app.UseMiddleware<UserLoggingMiddleware>();
 
       DbInitializer.Initialize(context);
 
@@ -116,7 +117,7 @@ namespace RPS.Presentation
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
-          c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+          c.SwaggerEndpoint("/swagger/v1/swagger.json", "RPS API V1");
         });
 
         // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
