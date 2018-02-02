@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RPS.Data.Elasticsearch;
 
 namespace RPS.Presentation.Server.Controllers
 {
@@ -47,5 +48,10 @@ namespace RPS.Presentation.Server.Controllers
     {
       return View();
     }
+
+    //public IActionResult CreateIndex()
+    //{
+    // // elasticsearchContext.IndexCreate<SnakeBites>();
+    //}
   }
 }

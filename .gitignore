@@ -5,3 +5,5 @@ _ReSharper.Caches/
 node_modules/
 obj/
 RPS.Data/bin/
+RPS Profile Completeness/logs/
+RPS.Data.Elasticsearch/bin/

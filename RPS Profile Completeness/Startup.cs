@@ -8,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nest;
+using RPS.Data.Elasticsearch;
+using RPS.Domain.Data;
+using RPS.Domain.Snakes;
 using RPS.Presentation.Middleware;
 using RPS.Presentation.Server.Data;
 using Serilog;
@@ -35,8 +39,8 @@ namespace RPS.Presentation
         .Enrich.FromLogContext()
           //   .WriteTo
           //      .ApplicationInsightsEvents("<MyApplicationInsightsInstrumentationKey>")
-        .WriteTo.RollingFile("log-{Date}.txt", retainedFileCountLimit:10, outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}{NewLine}Memory: {MemoryUsage}{NewLine}")
-        .WriteTo.RollingFile(new JsonFormatter(), "log-json-{Date}.txt")
+        .WriteTo.RollingFile("logs/log-{Date}.txt", retainedFileCountLimit:10, outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}{NewLine}Memory: {MemoryUsage}{NewLine}")
+        .WriteTo.RollingFile(new JsonFormatter(), "logs/log-json-{Date}.txt")
         .WriteTo.Console()
         .CreateLogger();
 
@@ -91,6 +95,16 @@ namespace RPS.Presentation
       {
         c.SwaggerDoc("v1", new Info { Title = "RPS API", Version = "v1" });
       });
+
+         services.Configure<ElasticSearchConfiguration>(Configuration.GetSection("SnakeDataRepository"));
+
+      // services.AddScoped<ISearchProvider<>, ElasticSearchProvider>();
+      
+   //   services.AddScoped<ElasticSearchConfiguration>();
+      services.AddScoped<IElasticSearchContext,ElasticSearchContext>();
+   //   services.Add(ServiceDescriptor.Singleton<IElasticClient>(ElasticSearchContext.GetClient()));
+      services.AddScoped<ISnakeDataRepository, SnakeDataRepository>();
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
