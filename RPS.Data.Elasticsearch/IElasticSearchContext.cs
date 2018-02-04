@@ -7,6 +7,7 @@ namespace RPS.Data.Elasticsearch
 {
     public interface IElasticSearchContext
     {
-        ElasticClient GetClient(string indexName = "netcore");
+        ElasticClient GetClient();
+        string CurrentIndexName { get; set; }
     }
 }

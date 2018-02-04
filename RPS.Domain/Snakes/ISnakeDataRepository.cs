@@ -6,7 +6,7 @@ namespace RPS.Domain.Snakes
 {
     public interface ISnakeDataRepository
     {
-        List<GeographicalRegion> GetGeographicalRegions();
+        List<SnakeBites> GetGeographicalRegions();
 
         GeographicalCountries GetBarChartDataForRegion(string machineName);
 

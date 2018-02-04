@@ -1,13 +1,13 @@
-﻿using ElasticsearchCRUD.ContextAddDeleteUpdate.CoreTypeAttributes;
+﻿
 
-namespace RPS.Data.Elasticsearch
+namespace RPS.Domain.Snakes
 {
     public class SnakeBites
     {
-        [ElasticsearchString(Index = StringIndex.not_analyzed)]
+
         public string GeographicalRegion { get; set; }
 
-        [ElasticsearchString(Index = StringIndex.not_analyzed)]
+
         public string Country { get; set; }
 
         public double NumberOfCasesLow { get; set; }
