@@ -27,6 +27,8 @@ import { CounterComponent } from './containers/counter/counter.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { PlotlyComponent } from './shared/components/plotly/plotly.component';
+
 import { LinkService } from './shared/link.service';
 import { UserService } from './shared/user.service';
 import { ORIGIN_URL } from '@nguniversal/aspnetcore-engine';
@@ -50,7 +52,8 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
         UsersComponent,
         UserDetailComponent,
         HomeComponent,
-        NotFoundComponent,
+      NotFoundComponent,
+      PlotlyComponent
     ],
     imports: [
         CommonModule,

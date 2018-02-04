@@ -33,6 +33,7 @@
     <None Remove="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
     <None Remove="ClientApp\app\modules\nbs-material.module.ts" />
     <None Remove="ClientApp\app\services\app.service.ts" />
+    <None Remove="ClientApp\app\shared\components\plotly\plotly.component.ts" />
     <None Remove="yarn.lock" />
     <Content Remove="wwwroot\dist\**" />
     <None Remove="ClientApp\dist\**" />
@@ -90,6 +91,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\modules\nbs-material.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\app.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\components\plotly\plotly.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NewFolder\" />

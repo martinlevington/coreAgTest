@@ -1,4 +1,4 @@
-﻿{
+{
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "es2015",
@@ -15,7 +15,12 @@
       "es2016",
       "dom"
     ],
-    "types": [ "node" ]
+    "types": [ "node", "plotly.js" ]
+    //"paths": {
+    //  "plotly.js": [
+    //    "../node_modules/plotly.js/dist/plotly-basic.js"
+    //  ]
+    //}
   },
   "include": [
     "ClientApp"
