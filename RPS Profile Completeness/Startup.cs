@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Nest;
 using Newtonsoft.Json.Serialization;
 using RPS.Data.Elasticsearch;
+using RPS.Data.Elasticsearch.ProfileCompleteness;
 using RPS.Domain.Data;
 using RPS.Domain.Snakes;
 using RPS.Presentation.Middleware;
@@ -98,14 +99,12 @@ namespace RPS.Presentation
         c.SwaggerDoc("v1", new Info { Title = "RPS API", Version = "v1" });
       });
 
-         services.Configure<ElasticSearchConfiguration>(Configuration.GetSection("SnakeDataRepository"));
-
-      // services.AddScoped<ISearchProvider<>, ElasticSearchProvider>();
+      services.Configure<ElasticSearchConfiguration>(Configuration.GetSection("SnakeDataRepository"));
       
-   //   services.AddScoped<ElasticSearchConfiguration>();
-      services.AddScoped<IElasticSearchContext,ElasticSearchContext>();
-   //   services.Add(ServiceDescriptor.Singleton<IElasticClient>(ElasticSearchContext.GetClient()));
+      services.AddSingleton<IElasticSearchContext,ElasticSearchContext>();
+
       services.AddScoped<ISnakeDataRepository, SnakeDataRepository>();
+      services.AddScoped<IScoringRepository, ScoringRepository>();
 
     }
 

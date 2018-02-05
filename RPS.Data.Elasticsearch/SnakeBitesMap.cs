@@ -6,7 +6,7 @@ using RPS.Domain.Snakes;
 
 namespace RPS.Data.Elasticsearch
 {
-    public static class SnakeBitsMap
+    public static class SnakeBitesMap
     {
         public static TypeMappingDescriptor<SnakeBites> MapPackage(TypeMappingDescriptor<SnakeBites> map) => map
             .AutoMap();

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Options;
 using Nest;
+using RPS.Domain.ProfileCompleteness;
 using RPS.Domain.Snakes;
 
 namespace RPS.Data.Elasticsearch
@@ -41,15 +42,29 @@ namespace RPS.Data.Elasticsearch
 
         private void CreateIndex()
         {
+            // default
             _client.CreateIndex(CurrentIndexName, i => i
                 .Settings(s => s
                     .NumberOfShards(2)
                     .NumberOfReplicas(0)
-                    .Analysis(SnakeBitsMap.Analysis)
+                    .Analysis(SnakeBitesMap.Analysis)
                 )
 
                 .Mappings(m => m
-                    .Map<SnakeBites>(SnakeBitsMap.MapPackage)
+                    .Map<SnakeBites>(SnakeBitesMap.MapPackage)
+                )
+            );
+
+            
+            _client.CreateIndex(nameof(Scoring).ToLower(), i => i
+                .Settings(s => s
+                    .NumberOfShards(2)
+                    .NumberOfReplicas(0)
+                    .Analysis(ScoringMap.Analysis)
+                )
+
+                .Mappings(m => m
+                    .Map<Scoring>(ScoringMap.MapPackage)
                 )
             );
         }

@@ -14,6 +14,7 @@ namespace RPS.Data.Elasticsearch
     {
     
         private readonly IElasticSearchContext _elasticSearchContext;
+        private readonly string _indexName = "snakedata";
 
 
         private readonly IOptions<ElasticSearchConfiguration> _optionsApplicationConfiguration;
@@ -123,6 +124,7 @@ namespace RPS.Data.Elasticsearch
 
             var searchResult = _elasticSearchContext.GetClient().Search<SnakeBites>(
                 s => s.From(0)
+                    .Index(_indexName)
                     .Size(10)
                     .Sort(sort => { return sort.Descending("_score"); })
 
@@ -201,7 +203,7 @@ namespace RPS.Data.Elasticsearch
             var waitHandle = new CountdownEvent(1);
 
             var bulkAll = _elasticSearchContext.GetClient().BulkAll(data, b => b
-                .Index(_elasticSearchContext.CurrentIndexName)
+                .Index(_indexName)
                 .BackOffRetries(2)
                 .BackOffTime("30s")
                 .RefreshOnCompleted(true)
