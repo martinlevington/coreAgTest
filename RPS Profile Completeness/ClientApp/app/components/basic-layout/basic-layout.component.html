@@ -10,10 +10,11 @@
 <mat-sidenav-container (backdropClick)="menuToggle.close()">
   <mat-sidenav #sidenav [opened]="showMenu" (close)="onNavClose()" mode="push">
     <router-outlet name="sidenav"></router-outlet>
+    <nbs-nav-panel></nbs-nav-panel>
   </mat-sidenav>
 
   <router-outlet></router-outlet>
 
-  <nav-menu></nav-menu>
+
 
 </mat-sidenav-container>

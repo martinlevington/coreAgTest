@@ -1,12 +1,12 @@
 import { NgModule, Inject } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule, APP_BASE_HREF } from '@angular/common';
-import { HttpModule, Http } from '@angular/http';
+import { HttpModule, Http, JsonpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { TransferHttpCacheModule } from '@nguniversal/common';
-
+import { Configuration } from './app.constants';
 
 import { AppService } from './services/app.service';
 
@@ -26,8 +26,11 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { CounterComponent } from './containers/counter/counter.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbsNavPanelComponent } from './components/nbs-nav-panel/nbs-nav-panel.component';
+import { NavMenuItemComponent } from './components/nbs-nav-panel/nav-menu-item/nav-menu-item.component';
 
 import { PlotlyComponent } from './shared/components/plotly/plotly.component';
+import { RegionComponent } from './components/snake/region.component';
 
 import { LinkService } from './shared/link.service';
 import { UserService } from './shared/user.service';
@@ -47,13 +50,16 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
       AppComponent,
       BasicLayoutComponent,
       MenuToggleComponent,
-        NavMenuComponent,
-        CounterComponent,
-        UsersComponent,
-        UserDetailComponent,
-        HomeComponent,
+      NavMenuComponent,
+      CounterComponent,
+      UsersComponent,
+      UserDetailComponent,
+      HomeComponent,
+      NbsNavPanelComponent,
+      NavMenuItemComponent,
       NotFoundComponent,
-      PlotlyComponent
+      PlotlyComponent,
+      RegionComponent
     ],
     imports: [
         CommonModule,
@@ -65,7 +71,9 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
         BrowserTransferStateModule,
         BrowserAnimationsModule,
 
-        FormsModule,
+      FormsModule,
+      HttpModule,
+      JsonpModule,
      
         // i18n support
         TranslateModule.forRoot({
@@ -160,7 +168,8 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
         LinkService,
         UserService,
         TranslateModule,
-        AppService
+      AppService,
+      Configuration
     ],
     bootstrap: [AppComponent]
 })

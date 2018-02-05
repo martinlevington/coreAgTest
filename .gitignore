@@ -7,3 +7,4 @@ obj/
 RPS.Data/bin/
 RPS Profile Completeness/logs/
 RPS.Data.Elasticsearch/bin/
+RPS.Domain/bin/

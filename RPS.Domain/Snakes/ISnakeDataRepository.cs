@@ -10,6 +10,6 @@ namespace RPS.Domain.Snakes
 
         GeographicalCountries GetBarChartDataForRegion(string machineName);
 
-        void AddAllData();
+        void AddAllData(string filePath);
     }
 }

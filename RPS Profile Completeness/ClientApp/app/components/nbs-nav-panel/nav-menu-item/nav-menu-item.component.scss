@@ -1,0 +1,108 @@
+@import "../../../../assets/styles/Utilities/utilities_collection";
+
+:host {
+  background: $white;
+  cursor: pointer;
+  display: block;
+}
+
+a {
+  @include box-shadow-none;
+  border-bottom: 1px solid $nbs-grey;
+  color: $nbs-grey-mid;
+  display: block;
+  font-size: 1rem;
+  outline: none;
+  overflow: hidden;
+  padding: rem(14px) rem(16px);
+  text-decoration: none;
+  text-overflow: ellipsis;
+  transition: background-color .3s ease;
+  white-space: nowrap;
+
+  &.active-item {
+    color: $nbs-action;
+  }
+
+  .active-item {
+    color: $white;
+  }
+
+  .mat-icon {
+    height: 1.25rem;
+    margin: 0 1.25rem 0 0;
+    position: relative;
+    vertical-align: middle;
+    width: 1.25rem;
+  }
+
+  span {
+    position: relative;
+    top: 1px;
+    vertical-align: middle;
+  }
+
+  &:hover {
+    background: $nbs-action;
+    color: $white;
+    border-bottom: 1px solid transparent;
+  }
+}
+
+.mat-expansion-panel {
+  color: $nbs-grey-mid;
+  padding: 0;
+  border-bottom: 1px solid $nbs-grey;
+
+  a {
+    padding:  .875rem 1rem .875rem 3.8rem;
+  }
+
+  .mat-expansion-panel-header {
+    font-weight: 400;
+    padding: 0 rem(16);
+
+    a {
+      padding: 0;
+      border-bottom: 1px solid transparent;
+    }
+
+    &:hover {
+      background: transparent;
+
+      a {
+        &:hover {
+          background: transparent;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    background: $nbs-action;
+    color: $white;
+
+    a {
+      color: $white;
+    }
+  }
+
+  &.mat-expanded {
+    border-bottom: 0;
+
+    a {
+      &:last-of-type {
+        border-bottom: 0;
+      }
+    }
+
+    &:hover {
+      background: transparent;
+      color: $nbs-grey-mid;
+
+      a {
+        color: $nbs-grey-mid;
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nest;
+using Newtonsoft.Json.Serialization;
 using RPS.Data.Elasticsearch;
 using RPS.Domain.Data;
 using RPS.Domain.Snakes;
@@ -81,7 +82,8 @@ namespace RPS.Presentation
     public void ConfigureServices(IServiceCollection services)
     {
       // Add framework services.
-      services.AddMvc();
+      services.AddMvc()
+        .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver());
       services.AddNodeServices();
 
       var connectionStringBuilder = new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder { DataSource = "spa.db" };

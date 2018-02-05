@@ -26,13 +26,20 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app.constants.ts" />
     <None Remove="ClientApp\app\app-routing.module.ts" />
     <None Remove="ClientApp\app\components\basic-layout\basic-layout.component.html" />
     <None Remove="ClientApp\app\components\basic-layout\basic-layout.component.scss" />
     <None Remove="ClientApp\app\components\basic-layout\basic-layout.component.ts" />
     <None Remove="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
+    <None Remove="ClientApp\app\components\snake\region.component.spec.ts" />
+    <None Remove="ClientApp\app\components\snake\region.component.ts" />
+    <None Remove="ClientApp\app\models\snake\BarTrace.ts" />
+    <None Remove="ClientApp\app\models\snake\GeographicalCountries.ts" />
+    <None Remove="ClientApp\app\models\snake\GeographicalRegion.ts" />
     <None Remove="ClientApp\app\modules\nbs-material.module.ts" />
     <None Remove="ClientApp\app\services\app.service.ts" />
+    <None Remove="ClientApp\app\services\snake\snake-data.service.ts" />
     <None Remove="ClientApp\app\shared\components\plotly\plotly.component.ts" />
     <None Remove="yarn.lock" />
     <Content Remove="wwwroot\dist\**" />
@@ -84,13 +91,20 @@
     <ProjectReference Include="..\RPS.Domain\RPS.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app.constants.ts" />
     <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\basic-layout\basic-layout.component.html" />
     <TypeScriptCompile Include="ClientApp\app\components\basic-layout\basic-layout.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\basic-layout\basic-layout.component.scss" />
     <TypeScriptCompile Include="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\snake\region.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\snake\region.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\snake\BarTrace.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\snake\GeographicalCountries.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\snake\GeographicalRegion.ts" />
     <TypeScriptCompile Include="ClientApp\app\modules\nbs-material.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\app.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\snake\snake-data.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\components\plotly\plotly.component.ts" />
   </ItemGroup>
   <ItemGroup>

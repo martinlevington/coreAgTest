@@ -12,17 +12,17 @@ namespace RPS.Data.Elasticsearch
 {
     public class SnakeDataRepository  : ISnakeDataRepository
     {
-        private readonly string _connectionString;
-        private IElasticSearchContext _elasticSearchContext;
+    
+        private readonly IElasticSearchContext _elasticSearchContext;
 
 
         private readonly IOptions<ElasticSearchConfiguration> _optionsApplicationConfiguration;
 
-        public SnakeDataRepository(IOptions<ElasticSearchConfiguration> options, IElasticSearchContext elasticSearchContext1)
+        public SnakeDataRepository(IOptions<ElasticSearchConfiguration> options, IElasticSearchContext elasticSearchContext)
         {
             _optionsApplicationConfiguration = options;
-            _elasticSearchContext = elasticSearchContext1;
-            _connectionString = _optionsApplicationConfiguration.Value.ElasticsearchUri;
+            _elasticSearchContext = elasticSearchContext;
+ 
 
            
         }
@@ -115,6 +115,51 @@ namespace RPS.Data.Elasticsearch
         //    return result;
         //}
 
+            // tofo refacot to return snakeBites
+        public GeographicalCountries GetBarChartDataForRegion(string region)
+        {
+            GeographicalCountries result = new GeographicalCountries { RegionName = region };
+
+
+            var searchResult = _elasticSearchContext.GetClient().Search<SnakeBites>(
+                s => s.From(0)
+                    .Size(10)
+                    .Sort(sort => { return sort.Descending("_score"); })
+
+                    .Aggregations(aggs => aggs
+
+
+                        .Sum("countCases", avg => avg.Field(p => p.NumberOfCasesHigh))
+                        .Sum("countDeaths", avg => avg.Field(p => p.NumberOfDeathsHigh))
+                    )
+
+                    .Query(q => 
+                            q.Match(c => c.Field(p => p.GeographicalRegion)
+                            .Query(region)
+                        )
+                    )
+
+            );
+
+            result.NumberOfCasesHighData = new BarTrace { Y = new List<double>() };
+            result.NumberOfCasesLowData = new BarTrace { Y = new List<double>() };
+            result.NumberOfDeathsHighData = new BarTrace { Y = new List<double>() };
+            result.NumberOfDeathsLowData = new BarTrace { Y = new List<double>() };
+            result.X = new List<string>();
+
+            foreach (var item in searchResult.Documents)
+            {
+                result.NumberOfCasesHighData.Y.Add(item.NumberOfCasesHigh);
+                result.NumberOfCasesLowData.Y.Add(item.NumberOfCasesLow);
+                result.NumberOfDeathsHighData.Y.Add(item.NumberOfDeathsHigh);
+                result.NumberOfDeathsLowData.Y.Add(item.NumberOfDeathsLow);
+
+                result.X.Add(item.Country);
+            }
+
+            return result;
+        }
+
         public List<SnakeBites> GetGeographicalRegions()
         {
             List<SnakeBites> geographicalRegions = new List<SnakeBites>();
@@ -147,14 +192,10 @@ namespace RPS.Data.Elasticsearch
 			return geographicalRegions;
         }
 
-        public GeographicalCountries GetBarChartDataForRegion(string machineName)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void AddAllData()
+        public void AddAllData(string filePath)
         {
-            List<SnakeBites> data = JsonConvert.DeserializeObject<List<SnakeBites>>(File.ReadAllText(_optionsApplicationConfiguration.Value.FilePath));
+            List<SnakeBites> data = JsonConvert.DeserializeObject<List<SnakeBites>>(File.ReadAllText(filePath));
 
 
             var waitHandle = new CountdownEvent(1);
@@ -178,11 +219,6 @@ namespace RPS.Data.Elasticsearch
 
         }
 
-        //private double GetBucketValue(RangeBucket bucket, string key)
-        //{
-        //    var res = bucket.GetSingleMetricSubAggregationValue<double?>(key);
-
-        //    return (Math.Round(res.GetValueOrDefault(0.0), 2) * 100);
-        //}
+      
     }
 }

@@ -3,6 +3,8 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { HomeComponent } from './containers/home/home.component';
 import { BasicLayoutComponent } from './components/basic-layout/basic-layout.component';
 import { PlotlyComponent } from './shared/components/plotly/plotly.component';
+import { RegionComponent } from './components/snake/region.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,7 +29,11 @@ const routes: Routes = [
        },
         {
         path: 'plotly', component: PlotlyComponent
-       }
+       },
+       {
+         path: 'snake-region', component: RegionComponent
+       },
+       
 
        
       ]

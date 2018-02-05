@@ -6,6 +6,8 @@ import { isPlatformServer } from '@angular/common';
 import { LinkService } from './shared/link.service';
 import { AppService } from './services/app.service';
 
+import { SnakeDataService } from './services/snake/snake-data.service';
+
 // i18n support
 import { TranslateService } from '@ngx-translate/core';
 import { REQUEST } from '@nguniversal/aspnetcore-engine';
@@ -17,7 +19,8 @@ import { REQUEST } from '@nguniversal/aspnetcore-engine';
       './app.component.scss'
      
     ],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    providers: [SnakeDataService ]
 })
 export class AppComponent implements OnInit, OnDestroy {
 

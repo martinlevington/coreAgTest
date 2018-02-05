@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using RPS.Data.Elasticsearch;
 using RPS.Domain.Snakes;
 
@@ -10,10 +11,12 @@ namespace RPS.Presentation.Server.Controllers
   {
     private IElasticSearchContext _context;
     private ISnakeDataRepository _snakeDataRepository;
+    private readonly IOptions<ElasticSearchConfiguration> _optionsApplicationConfiguration;
 
-    public SnakeDataController(ISnakeDataRepository snakeDataRepository, IElasticSearchContext context)
+    public SnakeDataController(ISnakeDataRepository snakeDataRepository, IElasticSearchContext context, IOptions<ElasticSearchConfiguration> options)
     {
       _snakeDataRepository = snakeDataRepository;
+      _optionsApplicationConfiguration = options;
       _context = context;
     }
 
@@ -58,7 +61,9 @@ namespace RPS.Presentation.Server.Controllers
     [HttpGet("AddAllData")]
     public IActionResult AddAllData()
     {
-      _snakeDataRepository.AddAllData();
+
+      var path = _optionsApplicationConfiguration.Value.FilePath;
+      _snakeDataRepository.AddAllData(path);
      return Ok();
     }
 

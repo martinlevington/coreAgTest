@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 
-
 import  * as Plotly  from 'plotly.js/lib/core';
 
 //declare var Plotly: any;
@@ -36,10 +35,14 @@ import  * as Plotly  from 'plotly.js/lib/core';
 
 export class PlotlyComponent implements OnInit {
 
+
+
   @Input() data: any;
   @Input() layout: any;
   @Input() options: any;
-  @Input() displayRawData: boolean;
+  @Input() displayRawData: boolean = false;
+
+
 
   ngOnInit() {
     console.log("ngOnInit PlotlyComponent");
