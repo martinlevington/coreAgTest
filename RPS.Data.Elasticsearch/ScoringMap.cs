@@ -10,7 +10,8 @@ namespace RPS.Data.Elasticsearch
     public static class ScoringMap
     {
         public static TypeMappingDescriptor<Scoring> MapPackage(TypeMappingDescriptor<Scoring> map) => map
-            .AutoMap();
+            .AutoMap()
+        ;
 
 
 

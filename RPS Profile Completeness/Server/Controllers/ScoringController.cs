@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using RPS.Data.Elasticsearch;
@@ -25,6 +26,24 @@ namespace RPS.Presentation.Server.Controllers
             return View();
         }
 
+        [HttpGet("TopImprovers")]
+        public IActionResult TopImprovers()
+        {
+            var range = DateTime.Parse("2017-11-10");
+            var topImporvers = _scoringRepository.GetTopImprovers(5, range);
+
+            return Json(topImporvers);
+        }
+
+        [HttpGet("top10")]
+        public IActionResult Top10()
+        {
+
+            var topImporvers = _scoringRepository.Get(10);
+
+            return Json(topImporvers);
+        }
+
         [HttpGet("AddAllData")]
         public IActionResult AddAllData()
         {
@@ -32,5 +51,15 @@ namespace RPS.Presentation.Server.Controllers
             _scoringRepository.AddAllData("rpsData.json");
             return Ok();
         }
+
+        [HttpGet("UpdateAllData")]
+        public IActionResult UpdateAllData()
+        {
+            var path = _optionsApplicationConfiguration.Value.FilePath;
+            _scoringRepository.UpdateAllData("rpsData.json");
+            return Ok();
+        }
     }
+
+
 }

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPS.Data", "RPS.Data\RPS.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPS.Presentation", "RPS Profile Completeness\RPS.Presentation.csproj", "{ED690D67-D576-4A15-9232-D18C5DF2EB2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.Data.Elasticsearch", "RPS.Data.Elasticsearch\RPS.Data.Elasticsearch.csproj", "{6BE549FB-09CF-4BA8-9BEA-45A64022CB5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPS.Data.Elasticsearch", "RPS.Data.Elasticsearch\RPS.Data.Elasticsearch.csproj", "{6BE549FB-09CF-4BA8-9BEA-45A64022CB5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.Application", "RPS.Application\RPS.Application.csproj", "{C807A8FD-3DF3-45EB-A37B-D19F7284AFE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6BE549FB-09CF-4BA8-9BEA-45A64022CB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BE549FB-09CF-4BA8-9BEA-45A64022CB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BE549FB-09CF-4BA8-9BEA-45A64022CB5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C807A8FD-3DF3-45EB-A37B-D19F7284AFE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C807A8FD-3DF3-45EB-A37B-D19F7284AFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C807A8FD-3DF3-45EB-A37B-D19F7284AFE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C807A8FD-3DF3-45EB-A37B-D19F7284AFE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

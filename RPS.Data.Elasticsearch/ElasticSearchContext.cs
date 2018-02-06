@@ -6,15 +6,11 @@ using RPS.Domain.Snakes;
 
 namespace RPS.Data.Elasticsearch
 {
-  
-
     public class ElasticSearchContext : IElasticSearchContext
     {
-
-        private  Uri node;
-        public ConnectionSettings Settings;
-        public string CurrentIndexName { get; set; }
+        private readonly Uri node;
         private ElasticClient _client;
+        public ConnectionSettings Settings;
 
         public ElasticSearchContext(IOptions<ElasticSearchConfiguration> configuration)
         {
@@ -23,19 +19,16 @@ namespace RPS.Data.Elasticsearch
             CurrentIndexName = configuration.Value.IndexName;
 
             // make sure index is created
-
         }
 
-        public  ElasticClient GetClient()
+        public string CurrentIndexName { get; set; }
+
+        public ElasticClient GetClient()
         {
-            
             Settings.DefaultIndex(CurrentIndexName);
             _client = new ElasticClient(Settings);
 
-            if (!_client.IndexExists(CurrentIndexName).Exists)
-            {
-                CreateIndex();
-            }
+            if (!_client.IndexExists(CurrentIndexName).Exists) CreateIndex();
 
             return _client;
         }
@@ -49,34 +42,28 @@ namespace RPS.Data.Elasticsearch
                     .NumberOfReplicas(0)
                     .Analysis(SnakeBitesMap.Analysis)
                 )
-
                 .Mappings(m => m
                     .Map<SnakeBites>(SnakeBitesMap.MapPackage)
                 )
             );
 
-            
+
             _client.CreateIndex(nameof(Scoring).ToLower(), i => i
                 .Settings(s => s
                     .NumberOfShards(2)
                     .NumberOfReplicas(0)
                     .Analysis(ScoringMap.Analysis)
                 )
-
                 .Mappings(m => m
                     .Map<Scoring>(ScoringMap.MapPackage)
                 )
             );
         }
 
-       
 
         public void DeleteIndexIfExists()
         {
-            if (_client.IndexExists(CurrentIndexName).Exists)
-            {
-                _client.DeleteIndex(CurrentIndexName);
-            }
+            if (_client.IndexExists(CurrentIndexName).Exists) _client.DeleteIndex(CurrentIndexName);
         }
     }
 }
