@@ -132,67 +132,13 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
                         .DateRange(r => r
                             .Field(f => f.RecordedOn)
                             .GreaterThanOrEquals(DateMath.Anchored(StartPeriod).Subtract("7d"))
-                            .LessThanOrEquals(DateMath.Anchored(StartPeriod).Add("1d"))
+                            .LessThanOrEquals(DateMath.Anchored(StartPeriod))
                         )
                     
                     )
             );
 
-            //var result = _elasticSearchContext.GetClient().Search<Scoring>(
-            //    s => s.Index(_indexName)
-            //        .From(0)
-            //        .Size(resultSize)
-
-            //        .Aggregations(aggs => aggs
-            //            .Terms("group_company", t => t.Field(f => f.CompanyFK))
-            //            .DateHistogram("serial_diff", 
-            //                dh => dh
-            //                    .Field(p => p.RecordedOn)
-            //                    .Interval(DateInterval.Week)
-            //                    .Aggregations(aa => aa
-            //                        .Sum("rpsscore", sm => sm.Field(p => p.Score))
-            //                    .SerialDifferencing("score_diff", d=>d.BucketsPath("rpsscore"))
-                                   
-
-            //                )
-            //                    )
-            //            .DateRange("max_min_over_range", date => date
-            //                .Field(f => f.RecordedOn)
-            //                .Ranges(
-            //                    r => r.From(DateMath.Anchored(StartPeriod).Subtract("10d"))
-            //                        .To(DateMath.Anchored(StartPeriod).Add("2d")))
-                                
-            //                .Aggregations(childAggs => childAggs
-            //                    .Max("maxScore", avg => avg.Field(p => p.Score))
-            //                    .Min("minScore", avg => avg.Field(p => p.Score))
-            //                )
-
-
-            //            )
-            //            )
-
-
-
-                    //.DateRange("max_min_over_range", date => date
-                    //    .Field(f => f.RecordedOn)
-                    //    .Ranges(
-                    //        r => r.From(DateMath.Anchored(StartPeriod).Subtract("30d"))
-                    //            .To(DateMath.Anchored(StartPeriod).Add("30d")),
-                    //        r => r.To(DateMath.Now.Add(TimeSpan.FromDays(1))))
-                    //    .Aggregations(childAggs => childAggs
-                    //        .Max("maxScore", avg => avg.Field(p => p.Score))
-                    //        .Min("minScore", avg => avg.Field(p => p.Score))
-                    //    )
-
-                    //    // .Max("maxScore", avg => avg.Field(p => p.Score))
-                    //    // .Min("minScore", avg => avg.Field(p => p.Score))
-                    //    .TimeZone("CET")
-                    //)
-
-                   // .Query(q => q.MatchAll()
-                   // )
-            //);
-
+           
 
             results.AddRange(result.Documents);
 

@@ -31,10 +31,12 @@ import { NavMenuItemComponent } from './components/nbs-nav-panel/nav-menu-item/n
 
 import { PlotlyComponent } from './shared/components/plotly/plotly.component';
 import { RegionComponent } from './components/snake/region.component';
+import { TopPerformersComponent } from './components/top-performers/top-performers.component';
 
 import { LinkService } from './shared/link.service';
 import { UserService } from './shared/user.service';
 import { ORIGIN_URL } from '@nguniversal/aspnetcore-engine';
+
 
 export function createTranslateLoader(http: HttpClient, baseHref) {
     // Temporary Azure hack
@@ -59,7 +61,8 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
       NavMenuItemComponent,
       NotFoundComponent,
       PlotlyComponent,
-      RegionComponent
+        RegionComponent,
+        TopPerformersComponent,
     ],
     imports: [
         CommonModule,

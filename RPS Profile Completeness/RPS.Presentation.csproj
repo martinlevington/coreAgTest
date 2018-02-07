@@ -34,6 +34,8 @@
     <None Remove="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
     <None Remove="ClientApp\app\components\snake\region.component.spec.ts" />
     <None Remove="ClientApp\app\components\snake\region.component.ts" />
+    <None Remove="ClientApp\app\components\top-performers\top-performers.component.ts" />
+    <None Remove="ClientApp\app\models\dashboard\top-performers.ts" />
     <None Remove="ClientApp\app\models\snake\BarTrace.ts" />
     <None Remove="ClientApp\app\models\snake\GeographicalCountries.ts" />
     <None Remove="ClientApp\app\models\snake\GeographicalRegion.ts" />
@@ -100,6 +102,8 @@
     <TypeScriptCompile Include="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\snake\region.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\snake\region.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\top-performers\top-performers.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\dashboard\top-performers.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\snake\BarTrace.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\snake\GeographicalCountries.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\snake\GeographicalRegion.ts" />
@@ -109,6 +113,7 @@
     <TypeScriptCompile Include="ClientApp\app\shared\components\plotly\plotly.component.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ClientApp\app\components\dashboard\" />
     <Folder Include="NewFolder\" />
   </ItemGroup>
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
