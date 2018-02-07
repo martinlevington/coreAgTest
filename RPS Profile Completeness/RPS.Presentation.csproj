@@ -86,6 +86,7 @@
     <None Include="wwwroot\assets\icons\symbol-defs.svg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RPS.Application\RPS.Application.csproj" />
     <ProjectReference Include="..\RPS.Data.Elasticsearch\RPS.Data.Elasticsearch.csproj" />
     <ProjectReference Include="..\RPS.Data\RPS.Data.csproj" />
     <ProjectReference Include="..\RPS.Domain\RPS.Domain.csproj" />
