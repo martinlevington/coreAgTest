@@ -29,7 +29,7 @@ namespace RPS.Presentation.Server.Controllers
         [HttpGet("TopImprovers")]
         public IActionResult TopImprovers()
         {
-            var range = DateTime.Parse("2017-11-10");
+            var range = DateTime.Parse("2017-11-24");
             var topImporvers = _scoringRepository.GetTopImprovers(5, range);
 
             return Json(topImporvers);

@@ -27,7 +27,11 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
             _optionsApplicationConfiguration = options;
         }
 
-
+        /// <summary>
+        /// Adds all data to db in bulk.
+        /// Will also update records if ids math in records
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
         public void AddAllData(string filePath)
         {
             var format = "dd/MM/yyyy HH:mm:ss";
@@ -63,10 +67,6 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
 
             var waitHandle = new CountdownEvent(1);
 
-  
-            
-    
-
             foreach (var item in data)
             {
                 var task = _elasticSearchContext.GetClient().Update<Scoring>(
@@ -75,22 +75,6 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
            
                     .Doc(item));
             }
-
-    //var bulkAll = _elasticSearchContext.GetClient().BulkAll(data, b => b
-    //             .Refresh(Refresh.True)
-    //            .Index(_indexName)
-    //            .BackOffRetries(2)
-    //            .BackOffTime("30s")
-    //            .RefreshOnCompleted(true)
-    //            .MaxDegreeOfParallelism(4)
-    //            .Size(1000)
-    //        );
-
-    //        bulkAll.Subscribe(new BulkAllObserver(
-    //            b => { Console.Write("."); },
-    //            e => throw e,
-    //            () => waitHandle.Signal()
-    //        ));
             waitHandle.Wait();
         }
 
@@ -121,63 +105,71 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
 
             // get scores imporved in last week
 
+            var result = _elasticSearchContext.GetClient().Search<Scoring>(
+                search => search.Index(_indexName)
+                    .From(0)
+                    .Size(resultSize)
+                    
+                    .Aggregations(a => a
+                        // simplify the terms aggregation
+                        .Terms("query", tr => tr
+                            .Field("CompanyFK")
+                            .Size(30)
+                        )
+                        // Add the top hits aggregation
+                        .TopHits("top", th => th
+                            .Size(1)
+                        )
+                    )
+                  .Sort(s => s
+                    .Field(f => 
+                            f.Field(p => p.Change)
+                            .Order(SortOrder.Descending)                    
+                        )
+
+                    )
+                    .Query(q => q
+                        .DateRange(r => r
+                            .Field(f => f.RecordedOn)
+                            .GreaterThanOrEquals(DateMath.Anchored(StartPeriod).Subtract("7d"))
+                            .LessThanOrEquals(DateMath.Anchored(StartPeriod).Add("1d"))
+                        )
+                    
+                    )
+            );
+
             //var result = _elasticSearchContext.GetClient().Search<Scoring>(
             //    s => s.Index(_indexName)
             //        .From(0)
             //        .Size(resultSize)
+
             //        .Aggregations(aggs => aggs
-            //            .DateRange("max_min_over_range", date => date
-            //                    .Field(f => f.RecordedOn)
-            //                    .Ranges(
-            //                        r => r.From(DateMath.Anchored(StartPeriod).Subtract("30d"))
-            //                            .To(DateMath.Anchored(StartPeriod).Add("30d")),
-            //                        r => r.To(DateMath.Now.Add(TimeSpan.FromDays(1))))
-            //                    .Aggregations(childAggs => childAggs
-            //                        .Max("maxScore", avg => avg.Field(p => p.Score))
-            //                        .Min("minScore", avg => avg.Field(p => p.Score))
-            //                    )
-
-            //                // .Max("maxScore", avg => avg.Field(p => p.Score))
-            //                // .Min("minScore", avg => avg.Field(p => p.Score))
-            //                .TimeZone("CET")
-            //            )
-            //        )
-            //        .Query(q => q.MatchAll()
-            //        )
-            //);
-
-            var result = _elasticSearchContext.GetClient().Search<Scoring>(
-                s => s.Index(_indexName)
-                    .From(0)
-                    .Size(resultSize)
-
-                    .Aggregations(aggs => aggs
-                        .Terms("group_company", t => t.Field(f => f.CompanyFK))
-                        .DateHistogram("serial_diff", 
-                            dh => dh
-                                .Field(p => p.RecordedOn)
-                                .Interval(DateInterval.Week)
-                                .Aggregations(aa => aa
-                                    .Sum("rpsscore", sm => sm.Field(p => p.Score))
-                                .SerialDifferencing("score_diff", d=>d.BucketsPath("rpsscore"))
+            //            .Terms("group_company", t => t.Field(f => f.CompanyFK))
+            //            .DateHistogram("serial_diff", 
+            //                dh => dh
+            //                    .Field(p => p.RecordedOn)
+            //                    .Interval(DateInterval.Week)
+            //                    .Aggregations(aa => aa
+            //                        .Sum("rpsscore", sm => sm.Field(p => p.Score))
+            //                    .SerialDifferencing("score_diff", d=>d.BucketsPath("rpsscore"))
                                    
 
-                            )
-                                )
-                        .DateRange("max_min_over_range", date => date
-                            .Field(f => f.RecordedOn)
-                            .Ranges(
-                                r => r.From(DateMath.Anchored(StartPeriod).Subtract("10d"))
-                                    .To(DateMath.Anchored(StartPeriod).Add("2d")))
+            //                )
+            //                    )
+            //            .DateRange("max_min_over_range", date => date
+            //                .Field(f => f.RecordedOn)
+            //                .Ranges(
+            //                    r => r.From(DateMath.Anchored(StartPeriod).Subtract("10d"))
+            //                        .To(DateMath.Anchored(StartPeriod).Add("2d")))
                                 
-                            .Aggregations(childAggs => childAggs
-                                .Max("maxScore", avg => avg.Field(p => p.Score))
-                                .Min("minScore", avg => avg.Field(p => p.Score))
-                            )
+            //                .Aggregations(childAggs => childAggs
+            //                    .Max("maxScore", avg => avg.Field(p => p.Score))
+            //                    .Min("minScore", avg => avg.Field(p => p.Score))
+            //                )
 
 
-                        )
-                        )
+            //            )
+            //            )
 
 
 
@@ -197,9 +189,9 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
                     //    .TimeZone("CET")
                     //)
 
-                    .Query(q => q.MatchAll()
-                    )
-            );
+                   // .Query(q => q.MatchAll()
+                   // )
+            //);
 
 
             results.AddRange(result.Documents);

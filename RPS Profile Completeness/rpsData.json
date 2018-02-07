@@ -8136,8 +8136,8 @@
     {
         "Id": 1755,
         "CompanyFK": 11860,
-        "Score": 80,
-        "Change": 1.25,
+        "Score": 81,
+        "Change": 2.25,
         "Explanation": "Upload more product catalogues; Add more additional links; Add a tagline; Add a twitter handle;",
         "RecordedOn": "24/11/2017 23:00:02",
         "RuleVersion": 1
