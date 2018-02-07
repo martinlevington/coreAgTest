@@ -94,6 +94,14 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
             waitHandle.Wait();
         }
 
+        public void DeleteIndex()
+        {
+            if (_elasticSearchContext.GetClient().IndexExists(_indexName).Exists)
+            {
+                _elasticSearchContext.GetClient().DeleteIndex(_indexName);
+            }
+        }
+
         public List<Scoring> Get(int resultSize)
         {
             var result = _elasticSearchContext.GetClient().Search<Scoring>(

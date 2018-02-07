@@ -63,7 +63,10 @@ namespace RPS.Data.Elasticsearch
 
         public void DeleteIndexIfExists()
         {
-            if (_client.IndexExists(CurrentIndexName).Exists) _client.DeleteIndex(CurrentIndexName);
+            if (_client.IndexExists(CurrentIndexName).Exists)
+            {
+                _client.DeleteIndex(CurrentIndexName);
+            }
         }
     }
 }

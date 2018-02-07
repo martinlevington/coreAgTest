@@ -59,6 +59,14 @@ namespace RPS.Presentation.Server.Controllers
             _scoringRepository.UpdateAllData("rpsData.json");
             return Ok();
         }
+
+        [HttpGet("DeleteIndex")]
+        public IActionResult DeleteIndex()
+        {
+           
+            _scoringRepository.DeleteIndex();
+            return Ok();
+        }
     }
 
 
