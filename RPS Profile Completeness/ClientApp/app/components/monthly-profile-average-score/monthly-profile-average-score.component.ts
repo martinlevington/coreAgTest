@@ -1,0 +1,76 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MonthlyAveragePerformer } from  '../../models/dashboard/monthly-average-performer';
+
+import { PlotlyComponent } from '../../shared/components/plotly/plotly.component';
+
+
+@Component({
+    selector: 'monthly-profile-average-score',
+    templateUrl: './monthly-profile-average-score.component.html',
+    styleUrls: ['./monthly-profile-average-score.component.scss']
+})
+
+
+
+export class MonthlyAveragePerformersComponent implements OnInit, OnDestroy {
+
+    performersData: Array<MonthlyAveragePerformer> ;
+
+    public plotlyLayout: any;
+    public plotlyData: any;
+    public plotlyOptions: any;
+
+
+    ngOnInit(): void {
+
+        this.performersData = [
+            { Month: 'January', Score : 60.2 },
+            { Month: 'February', Score: 62.0 },
+            { Month: 'March', Score: 64.0 },
+            { Month: 'April', Score: 65.0 },
+            { Month: 'May', Score: 67.0 },
+            { Month: 'June', Score: 69.0 }
+        ];
+
+        this.plotlyLayout = {
+            title: 'Monthly Avg',
+            // height: 500,
+            // width: 1200,
+            autosize: true
+          };
+
+          this.plotlyData = [
+            {
+              x: this.getXData(),
+              y: this.getYData(),
+              name: 'Avg',
+              type: 'bar',
+              orientation: 'v'
+            }
+          ];
+    }
+
+
+    getXData() {
+        let x = [];
+        for (let i of this.performersData) {
+            x.push(i.Month);
+        }
+
+        return x;
+    }
+
+    getYData() {
+        let x = [];
+        for (let i of this.performersData) {
+            x.push(i.Score);
+        }
+
+        return x;
+    }
+
+    ngOnDestroy(): void {
+
+    }
+}

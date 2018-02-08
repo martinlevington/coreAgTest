@@ -9,7 +9,7 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { Configuration } from './app.constants';
 
 import { AppService } from './services/app.service';
-
+import { ResizeService } from './services/resize-service';
 
 // i18n support
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -33,6 +33,10 @@ import { PlotlyComponent } from './shared/components/plotly/plotly.component';
 import { RegionComponent } from './components/snake/region.component';
 import { TopPerformersComponent } from './components/top-performers/top-performers.component';
 import { TopDeclinersComponent } from './components/top-decliners/top-decliners.component';
+import { CurrentProfileAverageComponent } from './components/current-profile-average-score/current-profile-average-score.component';
+import { MonthlyAveragePerformersComponent } from './components/monthly-profile-average-score/monthly-profile-average-score.component';
+
+
 
 import { LinkService } from './shared/link.service';
 import { UserService } from './shared/user.service';
@@ -64,7 +68,9 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
       PlotlyComponent,
         RegionComponent,
         TopPerformersComponent,
-        TopDeclinersComponent
+        TopDeclinersComponent,
+        CurrentProfileAverageComponent,
+        MonthlyAveragePerformersComponent
     ],
     imports: [
         CommonModule,
@@ -76,9 +82,9 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
         BrowserTransferStateModule,
         BrowserAnimationsModule,
 
-      FormsModule,
-      HttpModule,
-      JsonpModule,
+        FormsModule,
+        HttpModule,
+        JsonpModule,
      
         // i18n support
         TranslateModule.forRoot({
@@ -90,6 +96,7 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
         }),
         NbsMaterialModule,
         AppRoutingModule
+    
 
         //// App Routing
         //RouterModule.forRoot([
@@ -174,7 +181,8 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
         UserService,
         TranslateModule,
       AppService,
-      Configuration
+      Configuration,
+      ResizeService
     ],
     bootstrap: [AppComponent]
 })

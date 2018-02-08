@@ -1,41 +1,21 @@
-import { Component, EventEmitter, Input, Output, OnInit, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 
-import  * as Plotly  from 'plotly.js/lib/core';
+import { ResizeService } from '../../../services/resize-service';
+import * as Plotly from 'plotly.js/lib/core';
 
-//declare var Plotly: any;
 
 @Component({
   selector: 'plotlychart',
-  template: `
-<div style="margin-bottom:100px;">
-    <div id="myPlotlyDiv"
-         name="myPlotlyDiv"
-         style="width: 480px; height: 400px;">
-        <!-- Plotly chart will be drawn inside this DIV -->
-    </div>
-</div>
-
-<div *ngIf="displayRawData">
-    raw data:
-    <hr />
-    <span>{{data | json}}</span>
-    <hr />
-    layout:
-    <hr />
-    <span>{{layout | json}}</span>
-    <hr />
-</div>
-`,
+  templateUrl: './plotly.component.html',
   styleUrls: ['./plotly.component.scss']
+
 })
 
 
-export class PlotlyComponent implements OnInit {
-
-
+export class PlotlyComponent implements OnInit, OnDestroy {
 
   @Input() data: any;
   @Input() layout: any;
@@ -43,12 +23,30 @@ export class PlotlyComponent implements OnInit {
   @Input() displayRawData: boolean = false;
 
 
+  private resizeSubscription: Subscription;
+
+  constructor(private resizeService: ResizeService) {
+    this.resizeSubscription = this.resizeService.onResize$.subscribe(size => console.log(size));
+  }
 
   ngOnInit() {
     console.log("ngOnInit PlotlyComponent");
     console.log(this.data);
     console.log(this.layout);
 
+   
+
+
+
     Plotly.newPlot('myPlotlyDiv', this.data, this.layout, this.options);
+  }
+
+
+ 
+
+  ngOnDestroy(): void {
+    if (this.resizeSubscription) {
+      this.resizeSubscription.unsubscribe();
+    }
   }
 }

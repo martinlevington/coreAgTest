@@ -1,3 +1,17 @@
-<p>
-  plotly works!
-</p>
+  <div id="myPlotlyDiv"
+       name="myPlotlyDiv"
+       style="width: 90%; height: 90%;">
+      <!-- Plotly chart will be drawn inside this DIV -->
+  </div>
+
+
+<div *ngIf="displayRawData">
+  raw data:
+  <hr />
+  <span>{{data | json}}</span>
+  <hr />
+  layout:
+  <hr />
+  <span>{{layout | json}}</span>
+  <hr />
+</div>
