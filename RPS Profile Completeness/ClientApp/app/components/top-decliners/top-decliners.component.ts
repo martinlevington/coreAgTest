@@ -4,27 +4,30 @@ import { TopPerformer } from  '../../models/dashboard/top-performers';
 
 
 
+
 @Component({
-    selector: 'top-performers',
-    templateUrl: './top-performers.component.html',
-    styleUrls: ['./top-performers.component.scss']
+    selector: 'top-decliners',
+    templateUrl: './top-decliners.component.html',
+    styleUrls: ['./top-decliners.component.scss']
 })
 
 
 
-export class TopPerformersComponent implements OnInit, OnDestroy {
+export class TopDeclinersComponent implements OnInit, OnDestroy {
 
-    topPerformers : Array<TopPerformer> ;
+    performers : Array<TopPerformer> ;
 
     ngOnInit(): void {
 
-        this.topPerformers = [
+        this.performers = [
             { Name: "One", Change: 1, Score : 78.2 },
             { Name: "Two", Change : 2, Score: 60.0 }
         ];
+
+        this.performers.sort(function(a: TopPerformer, b: TopPerformer) {return a.Change<b.Change ? a.Change : b.Change;})
     }
 
     ngOnDestroy(): void {
-     
+
     }
 }

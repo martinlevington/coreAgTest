@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomeComponent implements OnInit {
 
-    title: string = 'Angular 5.x & ASP Test Project';
+    title: string = 'RPS: Home : Dashboard';
 
     // Use "constructor"s only for dependency injection
     constructor(

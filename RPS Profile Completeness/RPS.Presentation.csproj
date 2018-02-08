@@ -34,6 +34,7 @@
     <None Remove="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
     <None Remove="ClientApp\app\components\snake\region.component.spec.ts" />
     <None Remove="ClientApp\app\components\snake\region.component.ts" />
+    <None Remove="ClientApp\app\components\top-decliners\top-decliners.component.ts" />
     <None Remove="ClientApp\app\components\top-performers\top-performers.component.ts" />
     <None Remove="ClientApp\app\models\dashboard\top-performers.ts" />
     <None Remove="ClientApp\app\models\snake\BarTrace.ts" />
@@ -102,6 +103,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\snake\region.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\snake\region.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\top-decliners\top-decliners.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\top-performers\top-performers.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\dashboard\top-performers.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\snake\BarTrace.ts" />

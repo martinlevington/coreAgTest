@@ -15,6 +15,14 @@
 
   <router-outlet></router-outlet>
 
-  <top-performers></top-performers>
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile><top-performers></top-performers></mat-grid-tile>
+    <mat-grid-tile><top-decliners></top-decliners></mat-grid-tile>
+    <mat-grid-tile>3</mat-grid-tile>
+    <mat-grid-tile>4</mat-grid-tile>
+  </mat-grid-list>
+ 
+  
 
 </mat-sidenav-container>

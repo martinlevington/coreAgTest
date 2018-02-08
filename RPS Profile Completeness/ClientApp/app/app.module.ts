@@ -32,6 +32,7 @@ import { NavMenuItemComponent } from './components/nbs-nav-panel/nav-menu-item/n
 import { PlotlyComponent } from './shared/components/plotly/plotly.component';
 import { RegionComponent } from './components/snake/region.component';
 import { TopPerformersComponent } from './components/top-performers/top-performers.component';
+import { TopDeclinersComponent } from './components/top-decliners/top-decliners.component';
 
 import { LinkService } from './shared/link.service';
 import { UserService } from './shared/user.service';
@@ -63,6 +64,7 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
       PlotlyComponent,
         RegionComponent,
         TopPerformersComponent,
+        TopDeclinersComponent
     ],
     imports: [
         CommonModule,
