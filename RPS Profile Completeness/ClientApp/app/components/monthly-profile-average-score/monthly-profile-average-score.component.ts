@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MonthlyAveragePerformer } from  '../../models/dashboard/monthly-average-performer';
 
 import { PlotlyComponent } from '../../shared/components/plotly/plotly.component';
+import { Subscription } from 'rxjs/Subscription';
+import { ResizeService } from '../../services/resize-service';
 
 
 @Component({
@@ -16,11 +18,19 @@ import { PlotlyComponent } from '../../shared/components/plotly/plotly.component
 export class MonthlyAveragePerformersComponent implements OnInit, OnDestroy {
 
     performersData: Array<MonthlyAveragePerformer> ;
-
+    private resizeSubscription: Subscription;
+    
     public plotlyLayout: any;
     public plotlyData: any;
     public plotlyOptions: any;
 
+    constructor(private resizeService: ResizeService) {
+        this.resizeSubscription = this.resizeService.onResize$
+        .subscribe(size => console.log(size));
+    }
+
+ 
+ 
 
     ngOnInit(): void {
 
@@ -37,7 +47,8 @@ export class MonthlyAveragePerformersComponent implements OnInit, OnDestroy {
             title: 'Monthly Avg',
             // height: 500,
             // width: 1200,
-            autosize: true
+            autosize: true,
+            showlegend: false
           };
 
           this.plotlyData = [
@@ -49,6 +60,11 @@ export class MonthlyAveragePerformersComponent implements OnInit, OnDestroy {
               orientation: 'v'
             }
           ];
+
+          this.plotlyOptions = { 
+              displayModeBar: false,
+              staticPlot: true
+             };
     }
 
 

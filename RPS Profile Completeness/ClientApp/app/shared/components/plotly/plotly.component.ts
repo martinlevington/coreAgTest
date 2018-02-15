@@ -24,9 +24,16 @@ export class PlotlyComponent implements OnInit, OnDestroy {
 
 
   private resizeSubscription: Subscription;
+  private gd;
 
   constructor(private resizeService: ResizeService) {
     this.resizeSubscription = this.resizeService.onResize$.subscribe(size => console.log(size));
+  
+  }
+
+  resizeGraph(size)
+  {
+      Plotly.Plots.resize(this.gd);
   }
 
   ngOnInit() {
@@ -34,7 +41,8 @@ export class PlotlyComponent implements OnInit, OnDestroy {
     console.log(this.data);
     console.log(this.layout);
 
-   
+    var d3 = Plotly.d3;
+    this.gd = d3.select('myPlotlyDiv');
 
 
 
