@@ -30,6 +30,7 @@ export class MonthlyAveragePerformersComponent implements OnInit, OnDestroy {
     }
 
  
+
  
 
     ngOnInit(): void {
@@ -45,8 +46,12 @@ export class MonthlyAveragePerformersComponent implements OnInit, OnDestroy {
 
         this.plotlyLayout = {
             title: 'Monthly Avg',
-            // height: 500,
-            // width: 1200,
+            font: {
+                family: 'Roboto, "Helvetica Neue", sans-serif',
+                fontSize: '24px',
+                fontWeight: '400',
+                color: '#592d5e'
+            },
             autosize: true,
             showlegend: false
           };
