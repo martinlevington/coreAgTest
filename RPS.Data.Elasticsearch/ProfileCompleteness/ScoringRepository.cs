@@ -88,6 +88,8 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
 
         public List<Scoring> Get(int resultSize)
         {
+          //  var cc = _elasticSearchContext.GetClient();
+
             var result = _elasticSearchContext.GetClient().Search<Scoring>(
                 s => s.Index(_indexName)
                     .From(0)

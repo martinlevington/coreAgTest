@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Nest;
+﻿using Nest;
 using RPS.Domain.ProfileCompleteness;
-using RPS.Domain.Snakes;
 
 namespace RPS.Data.Elasticsearch
 {

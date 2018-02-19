@@ -7,7 +7,7 @@ namespace RPS.Data.Elasticsearch
 {
     public interface IElasticSearchContext
     {
-        ElasticClient GetClient();
+        IElasticClient GetClient();
         string CurrentIndexName { get; set; }
     }
 }

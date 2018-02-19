@@ -9,7 +9,7 @@ namespace RPS.Data.Elasticsearch
     public class ElasticSearchContext : IElasticSearchContext
     {
         private readonly Uri node;
-        private ElasticClient _client;
+        private IElasticClient _client;
         public ConnectionSettings Settings;
 
         public ElasticSearchContext(IOptions<ElasticSearchConfiguration> configuration)
@@ -23,12 +23,15 @@ namespace RPS.Data.Elasticsearch
 
         public string CurrentIndexName { get; set; }
 
-        public ElasticClient GetClient()
+        public IElasticClient GetClient()
         {
             Settings.DefaultIndex(CurrentIndexName);
             _client = new ElasticClient(Settings);
 
-            if (!_client.IndexExists(CurrentIndexName).Exists) CreateIndex();
+            if (!_client.IndexExists(CurrentIndexName).Exists)
+            {
+                CreateIndex();
+            }
 
             return _client;
         }
