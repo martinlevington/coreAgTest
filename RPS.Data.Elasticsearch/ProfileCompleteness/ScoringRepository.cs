@@ -60,7 +60,7 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
 
         public void UpdateAllData(string filePath)
         {
-            var format = "dd/MM/yyyy HH:mm:ss";
+            const string format = "dd/MM/yyyy HH:mm:ss";
             var dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = format };
 
             var data = JsonConvert.DeserializeObject<List<Scoring>>(File.ReadAllText(filePath), dateTimeConverter);
@@ -88,7 +88,6 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
 
         public List<Scoring> Get(int resultSize)
         {
-          //  var cc = _elasticSearchContext.GetClient();
 
             var result = _elasticSearchContext.GetClient().Search<Scoring>(
                 s => s.Index(_indexName)
@@ -139,11 +138,8 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
                     
                     )
             );
-
-           
-
+     
             results.AddRange(result.Documents);
-
 
             return results;
         }

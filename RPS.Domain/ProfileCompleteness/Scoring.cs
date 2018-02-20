@@ -11,7 +11,7 @@ namespace RPS.Domain.ProfileCompleteness
 
         public int Id { get; set; }
 
-        public int CompanyFK { get; set; }
+        public int CompanyFk { get; set; }
 
         public DateTime RecordedOn { get; set; }
 

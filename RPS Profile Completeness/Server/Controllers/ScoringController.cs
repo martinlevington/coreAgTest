@@ -1,6 +1,8 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using RPS.Application;
+using RPS.Application.Dashboard;
 using RPS.Data.Elasticsearch;
 using RPS.Domain.Data;
 
@@ -11,14 +13,16 @@ namespace RPS.Presentation.Server.Controllers
     {
         private readonly IOptions<ElasticSearchConfiguration> _optionsApplicationConfiguration;
         private readonly IScoringRepository _scoringRepository;
+        private readonly IDashboardService _dashboardService;
 
 
         public ScoringController(
             IScoringRepository scoringRepository,
-            IOptions<ElasticSearchConfiguration> options)
+            IOptions<ElasticSearchConfiguration> options, IDashboardService dashboardService)
         {
             _scoringRepository = scoringRepository;
             _optionsApplicationConfiguration = options;
+            _dashboardService = dashboardService;
         }
 
         public IActionResult Index()
@@ -30,7 +34,15 @@ namespace RPS.Presentation.Server.Controllers
         public IActionResult TopImprovers()
         {
             var range = DateTime.Parse("2017-11-24");
-            var topImporvers = _scoringRepository.GetTopImprovers(5, range);
+   
+            var monthlyScoreRequest = new MonthlyScoreRequest()
+            {
+                StartPeriod  = range,
+                NumberOfRecords = 10
+            };
+
+
+            var topImporvers = _dashboardService.GetMonthlyScores(monthlyScoreRequest);
 
             return Json(topImporvers);
         }

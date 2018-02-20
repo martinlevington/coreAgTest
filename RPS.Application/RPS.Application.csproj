@@ -1,7 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RPS.Data.Elasticsearch\RPS.Data.Elasticsearch.csproj" />
+    <ProjectReference Include="..\RPS.Domain\RPS.Domain.csproj" />
+  </ItemGroup>
 
 </Project>
