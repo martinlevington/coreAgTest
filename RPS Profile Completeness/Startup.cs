@@ -98,7 +98,7 @@ namespace RPS.Presentation
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "RPS API", Version = "v1"}); });
 
             services.Configure<ElasticSearchConfiguration>(Configuration.GetSection("SnakeDataRepository"));
-            services.AddTransient<StarWarsQuery>();
+            services.AddTransient<DashboardQuery>();
 
             var sp = services.BuildServiceProvider();
             var configuration = sp.GetService<ElasticSearchConfiguration>();
@@ -112,7 +112,7 @@ namespace RPS.Presentation
             services.AddScoped<IScoringRepository, ScoringRepository>();
 
           
-            services.AddTransient<IDashboardScheme>(x => new Schema { Query = sp.GetService<StarWarsQuery>() });
+            services.AddTransient<IDashboardSchema, DashboardSchema>();
 
 
         }
