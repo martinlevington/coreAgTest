@@ -42,7 +42,25 @@ namespace RPS.Presentation.Functional.Tests.Controllers
         {
             // Given 
             var query = @"{
-                ""query"": ""query { monthlys { Change Score }  }""
+                ""query"": ""query { monthlys { change score }  }""
+            }";
+            var content = new StringContent(query, Encoding.UTF8, "application/json");
+
+            // When
+            var response = await _client.PostAsync("/api/Dashboard", content);
+
+            // Then
+            response.EnsureSuccessStatusCode();
+            var responseString = await response.Content.ReadAsStringAsync();
+            Assert.Contains("R2-D2", responseString);
+        }
+
+        [Fact]
+        public async void TestGraphQLM()
+        {
+            // Given 
+            var query = @"{
+                ""query"": ""query { monthly { change score }  }""
             }";
             var content = new StringContent(query, Encoding.UTF8, "application/json");
 

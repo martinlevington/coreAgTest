@@ -14,10 +14,10 @@ namespace RPS.Presentation.Server.Controllers
     {
 
         private IDocumentExecuter _documentExecuter;
-        private readonly ISchema _schema;
+        private readonly IDashboardSchema _schema;
         private readonly ILogger<DashboardController> _logger;
 
-        public DashboardController(ISchema schema, IDocumentExecuter documentExecuter, ILogger<DashboardController> logger)
+        public DashboardController(IDashboardSchema schema, IDocumentExecuter documentExecuter, ILogger<DashboardController> logger)
         {
             _schema = schema;
             _documentExecuter = documentExecuter;
@@ -45,8 +45,40 @@ namespace RPS.Presentation.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            
+            var query = @"
+                query { monthly { change score }  }
+            ";
 
-            return new OkObjectResult("{hello}");
+            var executionOptions = new ExecutionOptions { Schema = _schema, Query = query };
+            var result = await _documentExecuter.ExecuteAsync(executionOptions).ConfigureAwait(false);
+
+            if (result.Errors?.Count > 0)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("monthlyscore")]
+        public async Task<IActionResult> GetScore()
+        {
+            
+            var query = @"
+                query { monthlyscore   }
+            ";
+
+            var executionOptions = new ExecutionOptions { Schema = _schema, Query = query };
+            var result = await _documentExecuter.ExecuteAsync(executionOptions).ConfigureAwait(false);
+
+            if (result.Errors?.Count > 0)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
         }
     }
 }

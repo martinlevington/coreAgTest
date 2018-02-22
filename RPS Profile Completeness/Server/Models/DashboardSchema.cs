@@ -9,6 +9,10 @@ namespace RPS.Presentation.Server.Models
             : base(resolveType)
         {
             Query = (DashboardQuery)resolveType(typeof(DashboardQuery));
+
+         //   RegisterType<ScoreType>();
+         //   RegisterType<ScoringType>();
+           
         }
       
     }

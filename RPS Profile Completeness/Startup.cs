@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.IO;
+using AutoMapper;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
@@ -92,7 +93,9 @@ namespace RPS.Presentation
             // Add framework services.
             services.AddMvc()
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
-           // services.AddNodeServices();
+
+            services.AddAutoMapper();
+            // services.AddNodeServices();
 
             //var connectionStringBuilder = new SqliteConnectionStringBuilder {DataSource = "spa.db"};
             //var connectionString = connectionStringBuilder.ToString();
@@ -104,7 +107,7 @@ namespace RPS.Presentation
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "RPS API", Version = "v1"}); });
 
             services.Configure<ElasticSearchConfiguration>(Configuration.GetSection("SnakeDataRepository"));
-            services.AddTransient<DashboardQuery>();
+        
 
 
             var settings = new ConnectionSettings(new Uri( Configuration.GetSection("SnakeDataRepository:ElasticsearchUri").Value));
@@ -118,7 +121,11 @@ namespace RPS.Presentation
             services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 
             services.AddTransient<IDocumentExecuter, DocumentExecuter>();
-            services.AddTransient<IDashboardSchema, DashboardSchema>();
+            services.AddTransient<ScoreType>();
+            services.AddTransient<ScoringType>();
+
+            services.AddTransient<DashboardQuery>();
+          //  services.AddScoped<IDashboardSchema, DashboardSchema>();
             
 
             //var sp = services.BuildServiceProvider();
@@ -126,8 +133,8 @@ namespace RPS.Presentation
 
 
             var sp = services.BuildServiceProvider();
-            services.AddScoped<ISchema>(_ => new DashboardSchema(type => (GraphType) sp.GetService(type)) {Query = sp.GetService<DashboardQuery>()});
-
+            services.AddScoped<IDashboardSchema>(_ => new DashboardSchema(type => (GraphType) sp.GetService(type)) {Query = sp.GetService<DashboardQuery>()});
+            
 
             //  InjectGraphQLSchema(services);
 
