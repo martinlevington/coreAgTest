@@ -25,6 +25,15 @@ namespace RPS.Presentation.Server.Models
                     NumberOfRecords = 10
                 })
             );
+
+            Field<ListGraphType<ScoringType>>(
+                "monthlys",
+                resolve: context => dashboardService.GetMonthlyScores(new MonthlyScoreRequest()
+                {
+                    StartPeriod  = DateTime.Parse("2017-11-24"),
+                    NumberOfRecords = 10
+                })
+            );
         }
 
     }

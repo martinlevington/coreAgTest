@@ -42,7 +42,7 @@ namespace RPS.Presentation.Functional.Tests.Controllers
         {
             // Given 
             var query = @"{
-                ""query"": ""query { monthly { Change }  }""
+                ""query"": ""query { monthlys { Change Score }  }""
             }";
             var content = new StringContent(query, Encoding.UTF8, "application/json");
 
