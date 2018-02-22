@@ -10,16 +10,20 @@ namespace RPS.Presentation.Server.Models
 
         public DashboardQuery(IDashboardService dashboardService)
         {
-            var range = DateTime.Parse("2017-11-24");
-            var monthlyScoreRequest = new MonthlyScoreRequest()
-            {
-                StartPeriod  = range,
-                NumberOfRecords = 10
-            };
+            //var range = DateTime.Parse("2017-11-24");
+            //var monthlyScoreRequest = new MonthlyScoreRequest()
+            //{
+            //    StartPeriod  = range,
+            //    NumberOfRecords = 10
+            //};
 
             Field<ScoringType>(
-                "monthlyScore",
-                resolve: context => dashboardService.GetMonthlyScores(monthlyScoreRequest)
+                "monthly",
+                resolve: context => dashboardService.GetMonthlyScores(new MonthlyScoreRequest()
+                {
+                    StartPeriod  = DateTime.Parse("2017-11-24"),
+                    NumberOfRecords = 10
+                })
             );
         }
 

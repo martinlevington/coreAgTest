@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.IO;
+using GraphQL;
+using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -11,8 +14,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nest;
 using Newtonsoft.Json.Serialization;
+using RPS.Application;
 using RPS.Data.Elasticsearch;
 using RPS.Data.Elasticsearch.ProfileCompleteness;
+using RPS.Domain.Core.Time;
 using RPS.Domain.Data;
 using RPS.Domain.Snakes;
 using RPS.Presentation.Middleware;
@@ -22,6 +27,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Json;
 using Swashbuckle.AspNetCore.Swagger;
+using Schema = GraphQL.Types.Schema;
 
 namespace RPS.Presentation
 {
@@ -86,13 +92,13 @@ namespace RPS.Presentation
             // Add framework services.
             services.AddMvc()
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
-            services.AddNodeServices();
+           // services.AddNodeServices();
 
-            var connectionStringBuilder = new SqliteConnectionStringBuilder {DataSource = "spa.db"};
-            var connectionString = connectionStringBuilder.ToString();
+            //var connectionStringBuilder = new SqliteConnectionStringBuilder {DataSource = "spa.db"};
+            //var connectionString = connectionStringBuilder.ToString();
 
-            services.AddDbContext<SpaDbContext>(options =>
-                options.UseSqlite(connectionString));
+            //services.AddDbContext<SpaDbContext>(options =>
+            //    options.UseSqlite(connectionString));
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "RPS API", Version = "v1"}); });
@@ -100,26 +106,51 @@ namespace RPS.Presentation
             services.Configure<ElasticSearchConfiguration>(Configuration.GetSection("SnakeDataRepository"));
             services.AddTransient<DashboardQuery>();
 
-            var sp = services.BuildServiceProvider();
-            var configuration = sp.GetService<ElasticSearchConfiguration>();
 
-            var settings = new ConnectionSettings(new Uri(configuration.ElasticsearchUri));
-            settings.DefaultIndex(configuration.IndexName);
+            var settings = new ConnectionSettings(new Uri( Configuration.GetSection("SnakeDataRepository:ElasticsearchUri").Value));
+            settings.DefaultIndex(Configuration.GetSection("SnakeDataRepository:IndexName").Value);
             services.AddSingleton<IElasticClient>(new ElasticClient(settings));
             services.AddSingleton<IElasticSearchContext, ElasticSearchContext>();
 
-            services.AddScoped<ISnakeDataRepository, SnakeDataRepository>();
-            services.AddScoped<IScoringRepository, ScoringRepository>();
+            services.AddTransient<ISnakeDataRepository, SnakeDataRepository>();
+            services.AddTransient<IScoringRepository, ScoringRepository>();
+            services.AddTransient<IDashboardService, DashboardService>();
+            services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 
-          
+            services.AddTransient<IDocumentExecuter, DocumentExecuter>();
             services.AddTransient<IDashboardSchema, DashboardSchema>();
+            
+
+            //var sp = services.BuildServiceProvider();
+            //services.AddTransient<ISchema>( x => new Schema{ Query = sp.GetService<DashboardQuery>() });
+
+
+            var sp = services.BuildServiceProvider();
+            services.AddScoped<ISchema>(_ => new DashboardSchema(type => (GraphType) sp.GetService(type)) {Query = sp.GetService<DashboardQuery>()});
+
+
+            //  InjectGraphQLSchema(services);
+
+   
 
 
         }
 
+
+        //private void InjectGraphQLSchema(IServiceCollection services) {
+        //    services.AddScoped<IDashboardSchema>((servicePrv) => {
+              
+        //        var dashboardService = servicePrv.GetRequiredService<IDashboardService>();
+        //        var schema = new DashboardSchema() { Query = new DashboardQuery(dashboardService) };
+        //        schema.Initialize();
+        //        return schema;
+        //    });
+        //}
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-            SpaDbContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory
+           )
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -129,16 +160,16 @@ namespace RPS.Presentation
             app.UseMiddleware<HttpContextLoggingMiddleware>();
             app.UseMiddleware<UserLoggingMiddleware>();
 
-            DbInitializer.Initialize(context);
+          //  DbInitializer.Initialize(context);
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                    HotModuleReplacement = true,
-                    HotModuleReplacementEndpoint = "/dist/"
-                });
+                //app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                //{
+                //    HotModuleReplacement = true,
+                //    HotModuleReplacementEndpoint = "/dist/"
+                //});
                 app.UseSwagger();
                 app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "RPS API V1"); });
 

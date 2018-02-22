@@ -20,7 +20,8 @@ namespace RPS.Application
 
         public List<Scoring> GetMonthlyScores(MonthlyScoreRequest monthlyScoreRequest)
         {
-            return _scoringRepository.GetTopImprovers(monthlyScoreRequest.NumberOfRecords, monthlyScoreRequest.StartPeriod);
+            var result = _scoringRepository.GetTopImprovers(monthlyScoreRequest.NumberOfRecords, monthlyScoreRequest.StartPeriod);
+            return result;
         }
 
     }

@@ -97,8 +97,6 @@
     "webpack-bundle-analyzer": "^2.9.0"
   },
   "-vs-binding": {
-    "AfterBuild": [
-      "build:dev"
-    ]
+  
   }
 }

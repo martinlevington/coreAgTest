@@ -5,11 +5,11 @@ namespace RPS.Presentation.Server.Models
 {
     public class DashboardSchema : Schema,IDashboardSchema
     {
-
         public DashboardSchema(Func<Type, GraphType> resolveType)
-            :base(resolveType)
+            : base(resolveType)
         {
             Query = (DashboardQuery)resolveType(typeof(DashboardQuery));
         }
+      
     }
 }
