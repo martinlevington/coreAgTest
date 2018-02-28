@@ -56,6 +56,15 @@ namespace RPS.Presentation.Server.Controllers
             return Json(topImporvers);
         }
 
+        [HttpGet("monthlyavg")]
+        public IActionResult MonthlyAvg()
+        {
+
+            var topImporvers = _scoringRepository.GetMonthlyAverage(10, 6);
+
+            return Json(topImporvers);
+        }
+
         [HttpGet("AddAllData")]
         public IActionResult AddAllData()
         {

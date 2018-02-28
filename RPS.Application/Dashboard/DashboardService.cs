@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using RPS.Application.Dashboard;
 using RPS.Domain.Core.Time;
 using RPS.Domain.Data;
 using RPS.Domain.ProfileCompleteness;
 
-namespace RPS.Application
+namespace RPS.Application.Dashboard
 {
     public class DashboardService : IDashboardService
     {
@@ -21,6 +20,12 @@ namespace RPS.Application
         public List<Scoring> GetMonthlyScores(MonthlyScoreRequest monthlyScoreRequest)
         {
             var result = _scoringRepository.GetTopImprovers(monthlyScoreRequest.NumberOfRecords, monthlyScoreRequest.StartPeriod);
+            return result;
+        }
+
+        public List<Scoring> GetMonthlyAverageScores(ScoreRequest scoreRequest)
+        {
+            var result = _scoringRepository.GetMonthlyAverage(scoreRequest.NumberOfRecords, 6);
             return result;
         }
 

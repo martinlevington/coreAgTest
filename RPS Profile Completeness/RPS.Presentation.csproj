@@ -121,6 +121,11 @@
     <Folder Include="ClientApp\app\components\dashboard\" />
     <Folder Include="NewFolder\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="rpsData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

@@ -1,5 +1,7 @@
 ﻿using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Xunit;
@@ -24,7 +26,7 @@ namespace RPS.Presentation.Functional.Tests.Controllers
         }
 
         [Fact]
-        public async void TestGraphQLGet()
+        public async Task DashControllelrGraphQLGet()
         {
            
            var response = await _client.GetAsync("/api/Dashboard");
@@ -32,17 +34,17 @@ namespace RPS.Presentation.Functional.Tests.Controllers
             // Then
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            Assert.Contains("hello", responseString);
+            Assert.Contains("monthlyscores", responseString);
 
         }
 
 
         [Fact]
-        public async void TestGraphQL()
+        public async Task MonthlyscoresQueryChangeAndScore()
         {
             // Given 
             var query = @"{
-                ""query"": ""query { monthlys { change score }  }""
+                ""query"": ""query { monthlyscores { change score }  }""
             }";
             var content = new StringContent(query, Encoding.UTF8, "application/json");
 
@@ -52,15 +54,18 @@ namespace RPS.Presentation.Functional.Tests.Controllers
             // Then
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            Assert.Contains("R2-D2", responseString);
+
+            responseString.Should().Contain("monthlyscore");
+            responseString.Should().Contain("score");
+
         }
 
         [Fact]
-        public async void TestGraphQLM()
+        public async Task MonthlyscoresQueryChangeOnly()
         {
             // Given 
             var query = @"{
-                ""query"": ""query { monthly { change score }  }""
+                ""query"": ""query { monthlyscores { change  }  }""
             }";
             var content = new StringContent(query, Encoding.UTF8, "application/json");
 
@@ -70,7 +75,9 @@ namespace RPS.Presentation.Functional.Tests.Controllers
             // Then
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            Assert.Contains("R2-D2", responseString);
+            responseString.Should().Contain("monthlyscore");
+            responseString.Should().Contain("score");
+            responseString.Should().NotContain("score ");
         }
     }
 }

@@ -34,7 +34,7 @@ namespace RPS.Presentation.Server.Controllers
             var executionOptions = new ExecutionOptions { Schema = _schema, Query = query.Query };
             var result = await _documentExecuter.ExecuteAsync(executionOptions).ConfigureAwait(false);
 
-            if (result.Errors?.Count > 0)
+            if (result.Errors != null && result.Errors.Count > 0)
             {
                 return BadRequest();
             }
@@ -47,13 +47,13 @@ namespace RPS.Presentation.Server.Controllers
         {
             
             var query = @"
-                query { monthly { change score }  }
+                query { monthlyscores { change score }  }
             ";
 
             var executionOptions = new ExecutionOptions { Schema = _schema, Query = query };
             var result = await _documentExecuter.ExecuteAsync(executionOptions).ConfigureAwait(false);
 
-            if (result.Errors?.Count > 0)
+            if (result.Errors != null && result.Errors.Count > 0)
             {
                 return BadRequest();
             }
@@ -73,7 +73,7 @@ namespace RPS.Presentation.Server.Controllers
             var executionOptions = new ExecutionOptions { Schema = _schema, Query = query };
             var result = await _documentExecuter.ExecuteAsync(executionOptions).ConfigureAwait(false);
 
-            if (result.Errors?.Count > 0)
+            if (result.Errors != null && result.Errors.Count > 0)
             {
                 return BadRequest();
             }

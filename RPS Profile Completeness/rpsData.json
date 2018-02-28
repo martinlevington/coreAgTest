@@ -8141,9 +8141,67 @@
         "Explanation": "Upload more product catalogues; Add more additional links; Add a tagline; Add a twitter handle;",
         "RecordedOn": "24/11/2017 23:00:02",
         "RuleVersion": 1
+    },
+
+
+
+
+
+
+        {
+        "Id": 12010,
+        "CompanyFK": 11644,
+        "Score": 37.5,
+        "Change": 2,
+        "Explanation": "Upload more product catalogues; Add more gallery images; Add more additional links; Add more case studies; Add more additional contacts; Add a tagline; Add a twitter handle;",
+        "RecordedOn": "01/12/2017 23:00:02",
+        "RuleVersion": 1
+    },
+    {
+        "Id": 12020,
+        "CompanyFK": 11732,
+        "Score": 62.5,
+        "Change": 2,
+        "Explanation": "Upload more product catalogues; Add more gallery images; Add more additional links; Add more case studies; Add a tagline; Add a twitter handle;",
+        "RecordedOn": "01/12/2017 23:00:02",
+        "RuleVersion": 1
+    },
+    {
+        "Id": 12030,
+        "CompanyFK": 11753,
+        "Score": 41.5,
+        "Change": 2,
+        "Explanation": "Upload more product catalogues; Add more gallery images; Add more additional links; Add more case studies; Add more additional contacts; Add a twitter handle;",
+        "RecordedOn": "01/12/2017 23:00:02",
+        "RuleVersion": 1
+    },
+    {
+        "Id": 12040,
+        "CompanyFK": 11757,
+        "Score": 90,
+        "Change": 2,
+        "Explanation": "Add more additional links; Add more case studies; Add a twitter handle;",
+        "RecordedOn": "01/12/2017 23:00:02",
+        "RuleVersion": 1
+    },
+    {
+        "Id": 12050,
+        "CompanyFK": 11758,
+        "Score": 79,
+        "Change": 2,
+        "Explanation": "Add more case studies;",
+        "RecordedOn": "01/12/2017 23:00:02",
+        "RuleVersion": 1
+    },
+    {
+        "Id": 12060,
+        "CompanyFK": 11860,
+        "Score": 81,
+        "Change": 2.25,
+        "Explanation": "Upload more product catalogues; Add more additional links; Add a tagline; Add a twitter handle;",
+        "RecordedOn": "01/12/2017 23:00:02",
+        "RuleVersion": 1
     }
-
-
 
 
 

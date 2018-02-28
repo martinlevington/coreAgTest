@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Nest;
 using Newtonsoft.Json.Serialization;
 using RPS.Application;
+using RPS.Application.Dashboard;
 using RPS.Data.Elasticsearch;
 using RPS.Data.Elasticsearch.ProfileCompleteness;
 using RPS.Domain.Core.Time;
@@ -34,6 +35,8 @@ namespace RPS.Presentation
 {
     public class Startup
     {
+        private readonly IHostingEnvironment _env;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -42,6 +45,8 @@ namespace RPS.Presentation
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            _env = env;
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -93,6 +98,10 @@ namespace RPS.Presentation
             // Add framework services.
             services.AddMvc()
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            if (_env.IsDevelopment())
+            {
+                AutoMapper.Mapper.Reset();
+            }
 
             services.AddAutoMapper();
             // services.AddNodeServices();

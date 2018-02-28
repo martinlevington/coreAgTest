@@ -20,6 +20,7 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
         private readonly IOptions<ElasticSearchConfiguration> _optionsApplicationConfiguration;
 
 
+
         public ScoringRepository(IElasticSearchContext elasticSearchContext,
             IOptions<ElasticSearchConfiguration> options)
         {
@@ -69,7 +70,7 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
 
             foreach (var item in data)
             {
-                var task = _elasticSearchContext.GetClient().Update<Scoring>(
+                _elasticSearchContext.GetClient().Update<Scoring>(
                 new DocumentPath<Scoring>(item), u =>
                 u.Index(_indexName)
            
@@ -100,7 +101,7 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
             return result.Documents.ToList();
         }
 
-        public List<Scoring> GetTopImprovers(int resultSize, DateTime StartPeriod)
+        public List<Scoring> GetTopImprovers(int resultSize, DateTime startPeriod)
         {
             var results = new List<Scoring>();
 
@@ -121,6 +122,7 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
                         .TopHits("top", th => th
                             .Size(1)
                         )
+                  
                     )
                   .Sort(s => s
                     .Field(f => 
@@ -132,8 +134,56 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
                     .Query(q => q
                         .DateRange(r => r
                             .Field(f => f.RecordedOn)
-                            .GreaterThanOrEquals(DateMath.Anchored(StartPeriod).Subtract("7d"))
-                            .LessThanOrEquals(DateMath.Anchored(StartPeriod))
+                            .GreaterThanOrEquals(DateMath.Anchored(startPeriod).Subtract("7d"))
+                            .LessThanOrEquals(DateMath.Anchored(startPeriod))
+                        )
+                    
+                    )
+            );
+     
+            results.AddRange(result.Documents);
+
+            return results;
+        }
+
+        public List<Scoring> GetMonthlyAverage(int resultSize, int numberOfMonths)
+        {
+          
+
+            var results = new List<Scoring>();
+
+            // get scores imporved in last week
+
+            var result = _elasticSearchContext.GetClient().Search<Scoring>(
+                search => search.Index(_indexName)
+                    .From(0)
+                    .Size(resultSize)
+                    
+                    .Aggregations(a => a
+                        // simplify the terms aggregation
+                        //.Terms("query", tr => tr
+                        //    .Field("CompanyFK")
+                        //    .Size(30)
+                        //)
+                        
+                        // Add the top hits aggregation
+                        .TopHits("top", th => th
+                            .Size(1)
+                        )
+                        .DateHistogram("month_avg",ag => ag.Field("RecordedOn").Interval(DateInterval.Month))
+                    )
+                    .Sort(s => s
+                        .Field(f => 
+                            f.Field(p => p.Change)
+                                .Order(SortOrder.Descending)                    
+                        )
+
+                    )
+                    .Query(q => q
+                        .DateRange(r => r
+                            .Field(f => f.RecordedOn)
+                            .GreaterThanOrEquals(DateMath.Anchored(DateTime.Now).Subtract(numberOfMonths+"d"))
+                            .LessThanOrEquals(DateMath.Anchored(DateTime.Now))
                         )
                     
                     )
