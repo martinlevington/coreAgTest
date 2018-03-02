@@ -121,6 +121,12 @@ namespace RPS.Presentation
 
             var settings = new ConnectionSettings(new Uri( Configuration.GetSection("SnakeDataRepository:ElasticsearchUri").Value));
             settings.DefaultIndex(Configuration.GetSection("SnakeDataRepository:IndexName").Value);
+            if (_env.IsDevelopment())
+            {
+                settings.EnableDebugMode();
+                settings.DisableDirectStreaming();
+            }
+
             services.AddSingleton<IElasticClient>(new ElasticClient(settings));
             services.AddSingleton<IElasticSearchContext, ElasticSearchContext>();
 

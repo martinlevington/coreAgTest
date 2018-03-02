@@ -23,6 +23,7 @@ namespace RPS.Application.Dashboard
             return result;
         }
 
+   
         public List<Scoring> GetMonthlyAverageScores(ScoreRequest scoreRequest)
         {
             var result = _scoringRepository.GetMonthlyAverage(scoreRequest.NumberOfRecords, 6);

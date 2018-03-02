@@ -10,6 +10,7 @@ namespace RPS.Presentation.Server.Models
         {
             Field(x => x.Change).Description("Score Change");
             Field(x => x.Score).Description("Score");
+            Field(x => x.RecordedOn).Description("RecordedOn");
         }
     }
 }

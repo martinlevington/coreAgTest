@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using Elasticsearch.Net;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Nest;
 using Newtonsoft.Json;
@@ -18,14 +19,18 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
         private readonly IElasticSearchContext _elasticSearchContext;
         private readonly string _indexName = nameof(Scoring).ToLower();
         private readonly IOptions<ElasticSearchConfiguration> _optionsApplicationConfiguration;
+        private readonly ILogger _logger;
 
 
 
         public ScoringRepository(IElasticSearchContext elasticSearchContext,
-            IOptions<ElasticSearchConfiguration> options)
+            IOptions<ElasticSearchConfiguration> options,
+            ILogger<ScoringRepository> logger)
         {
             _elasticSearchContext = elasticSearchContext;
             _optionsApplicationConfiguration = options;
+            _logger = logger;
+
         }
 
         /// <summary>
@@ -140,6 +145,8 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
                     
                     )
             );
+
+    
      
             results.AddRange(result.Documents);
 
@@ -154,11 +161,12 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
 
             // get scores imporved in last week
 
-            var result = _elasticSearchContext.GetClient().Search<Scoring>(
+            var response = _elasticSearchContext.GetClient().Search<Scoring>(
                 search => search.Index(_indexName)
-                    .From(0)
-                    .Size(resultSize)
-                    
+                   // .From(0)
+                   // .Size(resultSize)
+                    .Size(0)
+               //     .TypedKeys(null)
                     .Aggregations(a => a
                         // simplify the terms aggregation
                         //.Terms("query", tr => tr
@@ -167,29 +175,52 @@ namespace RPS.Data.Elasticsearch.ProfileCompleteness
                         //)
                         
                         // Add the top hits aggregation
-                        .TopHits("top", th => th
-                            .Size(1)
+                        //.TopHits("top", th => th
+                        //    .Size(1)
+                        //)
+                        .DateHistogram("avg_per_month",
+                            ag => ag.Field("recordedOn")
+                                .Interval(DateInterval.Month)
+                            .Aggregations(
+                                aggs => aggs.Average("avg_score", dField => dField.Field(field => field.Score)))
                         )
-                        .DateHistogram("month_avg",ag => ag.Field("RecordedOn").Interval(DateInterval.Month))
                     )
-                    .Sort(s => s
-                        .Field(f => 
-                            f.Field(p => p.Change)
-                                .Order(SortOrder.Descending)                    
-                        )
+                    //.Sort(s => s
+                    //    .Field(f => 
+                    //        f.Field(p => p.Change)
+                    //            .Order(SortOrder.Descending)                    
+                    //    )
 
-                    )
-                    .Query(q => q
-                        .DateRange(r => r
-                            .Field(f => f.RecordedOn)
-                            .GreaterThanOrEquals(DateMath.Anchored(DateTime.Now).Subtract(numberOfMonths+"d"))
-                            .LessThanOrEquals(DateMath.Anchored(DateTime.Now))
-                        )
+                    //)
+                    //.Query(q => q
+                    //    .DateRange(r => r
+                    //        .Field(f => f.RecordedOn)
+                    //        .GreaterThanOrEquals(DateMath.Anchored(DateTime.Now).Subtract(numberOfMonths+"d"))
+                    //        .LessThanOrEquals(DateMath.Anchored(DateTime.Now))
+                    //    )
                     
-                    )
+                    //)
             );
      
-            results.AddRange(result.Documents);
+            results.AddRange(response.Documents);
+
+            _logger.LogDebug(response.ApiCall.DebugInformation);
+
+            var dateHistogram = response.Aggregations.DateHistogram("avg_per_month");
+
+            foreach (var item in dateHistogram.Buckets)
+            {
+                var avg = item.Average("avg_score");
+
+                if (avg.Value != null)
+                {
+                    results.Add(new Scoring()
+                    {
+                        Score = (double) avg.Value,
+                        RecordedOn = item.Date
+                    });
+                }
+            }
 
             return results;
         }

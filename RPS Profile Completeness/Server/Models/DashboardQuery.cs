@@ -17,7 +17,7 @@ namespace RPS.Presentation.Server.Models
                 "monthlyscores",
                 resolve: context =>   
             {
-                var results = dashboardService.GetMonthlyScores(new MonthlyScoreRequest()
+                var results = dashboardService.GetMonthlyAverageScores(new ScoreRequest()
                 {
                     StartPeriod = DateTime.Parse("2017-11-24"),
                     NumberOfRecords = 10

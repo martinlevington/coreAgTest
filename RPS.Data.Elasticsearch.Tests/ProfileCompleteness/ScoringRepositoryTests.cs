@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using Nest;
@@ -19,6 +20,8 @@ namespace RPS.Data.Elasticsearch.Tests.ProfileCompleteness
             _searchContext = new Mock<IElasticSearchContext>();
             _searchContext.Setup(x => x.GetClient()).Returns(_client.Object);
             _options = new Mock<IOptions<ElasticSearchConfiguration>>();
+            _logger = new Mock<ILogger<ScoringRepository>>();
+
 
             SystemClock.Set(new DateTime(2018,2,3));
         }
@@ -26,6 +29,7 @@ namespace RPS.Data.Elasticsearch.Tests.ProfileCompleteness
         private readonly Mock<IElasticClient> _client;
         private readonly Mock<IElasticSearchContext> _searchContext;
         private readonly Mock<IOptions<ElasticSearchConfiguration>> _options;
+        private readonly Mock<ILogger<ScoringRepository>> _logger;
  
 
 
@@ -131,7 +135,7 @@ namespace RPS.Data.Elasticsearch.Tests.ProfileCompleteness
             var data = SimpleData();
             ClientSetup(data);
             var resultSize = 5;
-            var sut = new ScoringRepository(_searchContext.Object, _options.Object);
+            var sut = new ScoringRepository(_searchContext.Object, _options.Object, _logger.Object );
            
             // Act
             var result = sut.Get(resultSize);
@@ -150,7 +154,7 @@ namespace RPS.Data.Elasticsearch.Tests.ProfileCompleteness
             ClientSetup(data);
             var resultSize = 5;
             var numberOfMonths = 12;
-            var sut = new ScoringRepository(_searchContext.Object, _options.Object);
+            var sut = new ScoringRepository(_searchContext.Object, _options.Object, _logger.Object);
            
             // Act
             var result = sut.GetMonthlyAverage(resultSize,numberOfMonths);
@@ -168,7 +172,7 @@ namespace RPS.Data.Elasticsearch.Tests.ProfileCompleteness
             ClientSetup(data);
             var resultSize = 5;
             var startPeriod = SystemClock.Now;
-            var sut = new ScoringRepository(_searchContext.Object, _options.Object);
+            var sut = new ScoringRepository(_searchContext.Object, _options.Object, _logger.Object);
            
             // Act
             var result = sut.GetTopImprovers(resultSize,startPeriod);

@@ -8,7 +8,7 @@ namespace RPS.Presentation.Server.Controllers
   public class HomeController : Controller
   {
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public  IActionResult Index()
     {
       // var prerenderResult = await Request.BuildPrerender();
 
@@ -25,7 +25,7 @@ namespace RPS.Presentation.Server.Controllers
 
     [HttpGet]
     [Route("sitemap.xml")]
-    public async Task<IActionResult> SitemapXml()
+    public  IActionResult SitemapXml()
     {
       String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
 

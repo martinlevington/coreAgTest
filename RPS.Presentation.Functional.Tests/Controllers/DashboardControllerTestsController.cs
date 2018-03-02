@@ -65,7 +65,7 @@ namespace RPS.Presentation.Functional.Tests.Controllers
         {
             // Given 
             var query = @"{
-                ""query"": ""query { monthlyscores { change  }  }""
+                ""query"": ""query { monthlyscores { score recordedOn  }  }""
             }";
             var content = new StringContent(query, Encoding.UTF8, "application/json");
 
