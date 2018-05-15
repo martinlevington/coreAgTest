@@ -8,6 +8,7 @@ namespace RPS.Domain.Data
   {
     void AddAllData(string filePath);
     List<Scoring> GetTopImprovers(int resultSize, DateTime now);
+    List<Scoring> GetMonthlyAverage(int resultSize, int numberOfMonths);
     List<Scoring> Get(int i);
     void UpdateAllData(string rpsdataJson);
     void DeleteIndex();

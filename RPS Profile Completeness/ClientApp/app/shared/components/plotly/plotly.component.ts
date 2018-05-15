@@ -23,10 +23,10 @@ export class PlotlyComponent implements OnInit, OnDestroy {
   @Input() displayRawData: boolean = false;
 
   
-  private elementWrapperName: string = 'myPlotlyDiv';
-  @ViewChild(this.elementWrapperName, { read: ElementRef }) elMyPlotlyDiv: ElementRef;
 
+  @ViewChild('myPlotlyDiv', { read: ElementRef }) elMyPlotlyDiv: ElementRef;
 
+  private elementWrapperDiv: string = 'myPlotlyDiv';
   private readonly resizeSubscription: Subscription;
 
 
@@ -36,9 +36,9 @@ export class PlotlyComponent implements OnInit, OnDestroy {
   }
 
   resizeGraph(size) {
-    let gdn = this.elMyPlotlyDiv;
-    Plotly.Plots.resize(gdn.nativeElement);
-     console.log(size);
+
+    Plotly.Plots.resize(this.elMyPlotlyDiv.nativeElement);
+    console.log(size);
   }
 
   ngOnInit() {
@@ -46,7 +46,7 @@ export class PlotlyComponent implements OnInit, OnDestroy {
     console.log(this.data);
     console.log(this.layout);
 
-    Plotly.newPlot(this.elementWrapperName, this.data, this.layout, this.options);
+    Plotly.newPlot(this.elementWrapperDiv, this.data, this.layout, this.options);
   }
 
 
