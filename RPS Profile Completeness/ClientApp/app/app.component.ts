@@ -3,7 +3,7 @@ import { Router, NavigationEnd, ActivatedRoute, PRIMARY_OUTLET } from '@angular/
 import { Meta, Title, DOCUMENT, MetaDefinition } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 import { isPlatformServer } from '@angular/common';
-import { LinkService } from './shared/link.service';
+import { LinkService, LinkDefinition  } from './shared/link.service';
 import { AppService } from './services/app.service';
 
 import { SnakeDataService } from './services/snake/snake-data.service';
@@ -22,12 +22,13 @@ import { REQUEST } from '@nguniversal/aspnetcore-engine';
     encapsulation: ViewEncapsulation.None,
     providers: [SnakeDataService ]
 })
+
 export class AppComponent implements OnInit, OnDestroy {
 
     // This will go at the END of your title for example "Home - Angular Universal..." <-- after the dash (-)
-    private endPageTitle: string = 'Angular Universal and ASP.NET Core Starter';
+    private endPageTitle: string = ' RPS Completeness';
     // If no Title is provided, we'll use a default one before the dash(-)
-    private defaultPageTitle: string = 'My App';
+    private defaultPageTitle: string = 'RPS Report';
 
     private routerSub$: Subscription;
     private request;
@@ -75,7 +76,9 @@ export class AppComponent implements OnInit, OnDestroy {
             .filter(event => event instanceof NavigationEnd)
             .map(() => this.activatedRoute)
             .map(route => {
-                while (route.firstChild) route = route.firstChild;
+                while (route.firstChild) {
+                    route = route.firstChild;
+                }
                 return route;
             })
             .filter(route => route.outlet === 'primary')
@@ -94,15 +97,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.title.setTitle(title);
 
-        const metaData = event['meta'] || [];
-        const linksData = event['links'] || [];
+        const metaData: MetaDefinition[] = event['meta'] || [];
+        const linksData: LinkDefinition[] = (event['links'] || []) ;
 
         for (let i = 0; i < metaData.length; i++) {
             this.meta.updateTag(metaData[i]);
         }
 
         for (let i = 0; i < linksData.length; i++) {
-            this.linkService.addTag(linksData[i]);
+            this.linkService.addTag(linksData[i] )
+           
         }
     }
 

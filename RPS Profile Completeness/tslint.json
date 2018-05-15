@@ -26,10 +26,7 @@
     "eofline": true,
     "forin": true,
     "import-destructuring-spacing": true,
-    "indent": [
-      true,
-      "spaces"
-    ],
+    "indent": [ true, "spaces" ],
     "interface-name": false,
     "jsdoc-format": true,
     "label-position": true,

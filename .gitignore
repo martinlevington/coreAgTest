@@ -10,3 +10,5 @@ RPS.Data.Elasticsearch/bin/
 RPS.Domain/bin/
 RPS.Application/bin/Debug/netcoreapp2.0/RPS.Application.deps.json
 RPS.Application/bin/Debug/netcoreapp2.0/RPS.Application.dll
+RPS.Data.Elasticsearch/RPS.Data.Elasticsearch.csproj.user
+.vs/RPS Profile Completeness/v15/.suo
