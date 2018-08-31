@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using GraphQL;
-using GraphQL.Types;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RPS.Presentation.Server.Models;

@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using AutoMapper;
 using GraphQL.Types;
-using RPS.Application;
 using RPS.Application.Dashboard;
-using RPS.Domain.ProfileCompleteness;
 
 namespace RPS.Presentation.Server.Models
 {

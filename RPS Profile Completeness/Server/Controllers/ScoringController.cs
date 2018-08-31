@@ -1,7 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using RPS.Application;
 using RPS.Application.Dashboard;
 using RPS.Data.Elasticsearch;
 using RPS.Domain.Data;
@@ -25,6 +24,7 @@ namespace RPS.Presentation.Server.Controllers
             _dashboardService = dashboardService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

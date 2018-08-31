@@ -76,7 +76,7 @@ export class RegionComponent implements OnInit, OnDestroy {
       }
     ];
 
-    console.log("recieved plotly data");
+    console.log("received plotly data");
     console.log(this.PlotlyData);
   }
 

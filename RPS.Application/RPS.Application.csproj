@@ -9,4 +9,8 @@
     <ProjectReference Include="..\RPS.Domain\RPS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core\" />
+  </ItemGroup>
+
 </Project>

@@ -10,8 +10,7 @@ export class NbsNavPanelComponent implements OnInit {
   menuItems = [
     {icon: "simple:home", title: "Home", children: null, routerLink: ['/', 'home']},
     { icon: "simple:vector", title: "Plotly", children: null, routerLink: ['/', 'plotly'] },
-    { icon: "simple:vector", title: "Snake Region", children: null, routerLink: ['/', 'snake-region'] },
-
+ 
     { icon: "simple:printer", title: "Space", children: null, routerLink: ['/', '#'] },
     {icon: "simple:screen-desktop", title: "Brand for Digital", children: null, routerLink: ['/', 'home']},
     {icon: "simple:docs", title: "Development Framework", children: null, routerLink: ['/', 'dev-framework']},

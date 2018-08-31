@@ -1,35 +1,27 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.IO;
 using AutoMapper;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.Webpack;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nest;
 using Newtonsoft.Json.Serialization;
-using RPS.Application;
 using RPS.Application.Dashboard;
 using RPS.Data.Elasticsearch;
 using RPS.Data.Elasticsearch.ProfileCompleteness;
 using RPS.Domain.Core.Time;
 using RPS.Domain.Data;
-using RPS.Domain.Snakes;
 using RPS.Presentation.Middleware;
-using RPS.Presentation.Server.Data;
 using RPS.Presentation.Server.Models;
 using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Json;
 using Swashbuckle.AspNetCore.Swagger;
-using Schema = GraphQL.Types.Schema;
 
 namespace RPS.Presentation
 {
@@ -109,12 +101,12 @@ namespace RPS.Presentation
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "RPS API", Version = "v1"}); });
 
-            services.Configure<ElasticSearchConfiguration>(Configuration.GetSection("SnakeDataRepository"));
+            services.Configure<ElasticSearchConfiguration>(Configuration.GetSection("RPSDataRepository"));
         
 
 
-            var settings = new ConnectionSettings(new Uri( Configuration.GetSection("SnakeDataRepository:ElasticsearchUri").Value));
-            settings.DefaultIndex(Configuration.GetSection("SnakeDataRepository:IndexName").Value);
+            var settings = new ConnectionSettings(new Uri( Configuration.GetSection("RPSDataRepository:ElasticsearchUri").Value));
+            settings.DefaultIndex(Configuration.GetSection("RPSDataRepository:IndexName").Value);
             if (_env.IsDevelopment())
             {
                 settings.EnableDebugMode();
@@ -124,7 +116,6 @@ namespace RPS.Presentation
             services.AddSingleton<IElasticClient>(new ElasticClient(settings));
             services.AddSingleton<IElasticSearchContext, ElasticSearchContext>();
 
-            services.AddTransient<ISnakeDataRepository, SnakeDataRepository>();
             services.AddTransient<IScoringRepository, ScoringRepository>();
             services.AddTransient<IDashboardService, DashboardService>();
             services.AddTransient<IDateTimeProvider, DateTimeProvider>();

@@ -1,5 +1,3 @@
-using System;
-
 namespace RPS.Presentation.Server.Models
 {
     public class ScoreResult

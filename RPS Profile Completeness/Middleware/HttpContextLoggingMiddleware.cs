@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Serilog;
-using Serilog.Context;
 using Serilog.Events;
 
 namespace RPS.Presentation.Middleware

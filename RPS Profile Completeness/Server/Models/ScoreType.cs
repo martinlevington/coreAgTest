@@ -1,5 +1,4 @@
 using GraphQL.Types;
-using RPS.Domain.ProfileCompleteness;
 
 namespace RPS.Presentation.Server.Models
 {

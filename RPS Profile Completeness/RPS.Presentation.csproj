@@ -48,12 +48,16 @@
     <None Remove="ClientApp\app\services\snake\snake-data.service.ts" />
     <None Remove="ClientApp\app\shared\components\plotly\plotly.component.ts" />
     <None Remove="yarn.lock" />
+    <Compile Remove="NewFolder\**" />
+    <Content Remove="NewFolder\**" />
     <Content Remove="wwwroot\dist\**" />
     <None Remove="ClientApp\dist\**" />
+    <None Remove="NewFolder\**" />
     <Content Remove="coverage\**" />
 
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\assets\icons\apple-touch-icon-114x114.png" />
@@ -119,7 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\app\components\dashboard\" />
-    <Folder Include="NewFolder\" />
+    <Folder Include="ClientApp\app\services\rps\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="rpsData.json">

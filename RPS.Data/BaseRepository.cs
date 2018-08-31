@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using RPS.Application.Core;
 using RPS.Domain.Data;
 
 namespace RPS.Data
