@@ -11,6 +11,8 @@ import { SnakeDataService } from './services/snake/snake-data.service';
 // i18n support
 import { TranslateService } from '@ngx-translate/core';
 import { REQUEST } from '@nguniversal/aspnetcore-engine';
+import { init as initApm } from 'elastic-apm-js-base'
+
 
 @Component({
     selector: 'app-root',
@@ -55,7 +57,20 @@ export class AppComponent implements OnInit, OnDestroy {
         console.log(`The Request object only really exists on the Server, but on the Browser we can at least see Cookies`);
         console.log(this.request);
 
-   
+        var apm = initApm({
+
+            // Set custom APM Server URL (default: http://localhost:8200)
+            serverUrl: 'http://localhost:8200',
+
+            // Set required service name
+            serviceName: 'service-name',
+
+            // Set service version (required for sourcemap feature)
+            serviceVersion: 'service-version'
+        });
+        let tags = { test: "apm" };
+        apm.setTags(tags);
+
     }
 
     ngOnInit() {
