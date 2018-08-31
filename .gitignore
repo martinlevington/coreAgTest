@@ -13,3 +13,5 @@ RPS.Application/bin/Debug/netcoreapp2.0/RPS.Application.dll
 RPS.Data.Elasticsearch.Tests/bin/Debug/netcoreapp2.0/RPS.Data.Elasticsearch.Tests.runtimeconfig.json
 RPS.Presentation.Functional.Tests/bin/
 RPS.Application/bin/
+.vs/
+RPS.Data.Elasticsearch.Tests/bin/
