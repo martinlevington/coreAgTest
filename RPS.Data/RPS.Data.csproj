@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RPS.Application\RPS.Application.csproj" />
     <ProjectReference Include="..\RPS.Domain\RPS.Domain.csproj" />
   </ItemGroup>
 
