@@ -96,7 +96,5 @@
     "tslint": "^5.7.0",
     "webpack-bundle-analyzer": "^2.9.0"
   },
-  "-vs-binding": {
-  
-  }
+  "-vs-binding": {}
 }

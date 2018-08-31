@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RPS.Domain.Data
+namespace RPS.Application.Core
 {
     public interface IBaseRepository<TEntity, in TKey>
         where TEntity : class

@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+    <Folder Include="Search\" />
   </ItemGroup>
 
 </Project>

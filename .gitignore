@@ -15,3 +15,8 @@ RPS.Data.Elasticsearch/RPS.Data.Elasticsearch.csproj.user
 RPS.Data.Elasticsearch.Tests/bin/Debug/netcoreapp2.0/RPS.Data.Elasticsearch.Tests.runtimeconfig.json
 RPS.Presentation.Functional.Tests/bin/
 RPS.Application/bin/
+.vs/
+RPS.Data.Elasticsearch.Tests/bin/Debug/netcoreapp2.0/RPS.Data.Elasticsearch.dll
+RPS.Data.Elasticsearch.Tests/bin/Debug/netcoreapp2.0/RPS.Data.Elasticsearch.pdb
+RPS.Data.Elasticsearch.Tests/bin/Debug/netcoreapp2.0/RPS.Data.Elasticsearch.Tests.dll
+RPS.Data.Elasticsearch.Tests/bin/

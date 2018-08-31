@@ -104,13 +104,7 @@ namespace RPS.Presentation
             }
 
             services.AddAutoMapper();
-            // services.AddNodeServices();
-
-            //var connectionStringBuilder = new SqliteConnectionStringBuilder {DataSource = "spa.db"};
-            //var connectionString = connectionStringBuilder.ToString();
-
-            //services.AddDbContext<SpaDbContext>(options =>
-            //    options.UseSqlite(connectionString));
+           
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "RPS API", Version = "v1"}); });
@@ -151,23 +145,8 @@ namespace RPS.Presentation
             services.AddScoped<IDashboardSchema>(_ => new DashboardSchema(type => (GraphType) sp.GetService(type)) {Query = sp.GetService<DashboardQuery>()});
             
 
-            //  InjectGraphQLSchema(services);
-
-   
-
-
         }
 
-
-        //private void InjectGraphQLSchema(IServiceCollection services) {
-        //    services.AddScoped<IDashboardSchema>((servicePrv) => {
-              
-        //        var dashboardService = servicePrv.GetRequiredService<IDashboardService>();
-        //        var schema = new DashboardSchema() { Query = new DashboardQuery(dashboardService) };
-        //        schema.Initialize();
-        //        return schema;
-        //    });
-        //}
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -182,22 +161,14 @@ namespace RPS.Presentation
             app.UseMiddleware<HttpContextLoggingMiddleware>();
             app.UseMiddleware<UserLoggingMiddleware>();
 
-          //  DbInitializer.Initialize(context);
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                //{
-                //    HotModuleReplacement = true,
-                //    HotModuleReplacementEndpoint = "/dist/"
-                //});
                 app.UseSwagger();
                 app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "RPS API V1"); });
 
                 // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
-
-
                 app.MapWhen(x => !x.Request.Path.Value.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase),
                     builder =>
                     {
