@@ -1,0 +1,13 @@
+
+
+<mat-card>
+<mat-card-title>Top Decliners</mat-card-title>
+    <mat-card-content>
+
+    <ul class="top-decliners">
+        <li *ngFor="let performer of performers ">
+            {{performer.Name}} {{performer.Score}}
+        </li>
+    </ul>
+    </mat-card-content>
+</mat-card>

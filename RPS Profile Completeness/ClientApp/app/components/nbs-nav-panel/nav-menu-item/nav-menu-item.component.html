@@ -1,0 +1,18 @@
+<a *ngIf="!menuItem.children" (click)="linkClicked(menuItem)">
+  <mat-icon [svgIcon]="menuItem.icon" aria-hidden="true"></mat-icon>
+  <span>{{ menuItem.title }}</span>
+</a>
+
+<mat-expansion-panel *ngIf="menuItem.children">
+  <mat-expansion-panel-header>
+    <a (click)="linkClicked(menuItem)">
+      <mat-icon *ngIf="menuItem.icon" [svgIcon]="menuItem.icon" aria-hidden="true"></mat-icon>
+      <span>{{ menuItem.title }}</span>
+    </a>
+  </mat-expansion-panel-header>
+
+  <a *ngFor="let child of menuItem.children" (click)="linkClicked(child)">
+    <mat-icon *ngIf="child.icon" [svgIcon]="child.icon" aria-hidden="true"></mat-icon>
+    <span>{{ child.title }}</span>
+  </a>
+</mat-expansion-panel>

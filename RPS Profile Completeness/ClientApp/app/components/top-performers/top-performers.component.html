@@ -1,0 +1,12 @@
+
+
+<mat-card>
+<mat-card-title>Top Performers</mat-card-title>
+    <mat-card-content>
+        <ul class="top-performers">
+            <li *ngFor="let topPerformer of topPerformers">
+                {{topPerformer.Name}} {{topPerformer.Score}}
+            </li>
+        </ul>
+    </mat-card-content>
+</mat-card>

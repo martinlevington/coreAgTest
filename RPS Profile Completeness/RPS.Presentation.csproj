@@ -1,0 +1,169 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+  <!-- New Meta Package has SpaServices in It -->
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="GraphQL" Version="0.17.3" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="2.1.0" />
+    <PackageReference Include="Serilog.Enrichers.AssemblyName" Version="1.0.8" />
+    <PackageReference Include="Serilog.Enrichers.Context" Version="2.4.0" />
+    <PackageReference Include="Serilog.Enrichers.HttpContextData" Version="0.1.2" />
+    <PackageReference Include="Serilog.Enrichers.Memory" Version="1.0.4" />
+    <PackageReference Include="Serilog.Enrichers.Process" Version="2.0.1" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="3.0.0" />
+    <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="2.5.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="SyrianBallaS.AutoMapper.Extensions.Microsoft.DependencyInjection.Signed" Version="3.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app.constants.ts" />
+    <None Remove="ClientApp\app\app-routing.module.ts" />
+    <None Remove="ClientApp\app\components\basic-layout\basic-layout.component.html" />
+    <None Remove="ClientApp\app\components\basic-layout\basic-layout.component.scss" />
+    <None Remove="ClientApp\app\components\basic-layout\basic-layout.component.ts" />
+    <None Remove="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
+    <None Remove="ClientApp\app\components\snake\region.component.spec.ts" />
+    <None Remove="ClientApp\app\components\snake\region.component.ts" />
+    <None Remove="ClientApp\app\components\top-decliners\top-decliners.component.ts" />
+    <None Remove="ClientApp\app\components\top-performers\top-performers.component.ts" />
+    <None Remove="ClientApp\app\models\dashboard\top-performers.ts" />
+    <None Remove="ClientApp\app\models\snake\BarTrace.ts" />
+    <None Remove="ClientApp\app\models\snake\GeographicalCountries.ts" />
+    <None Remove="ClientApp\app\models\snake\GeographicalRegion.ts" />
+    <None Remove="ClientApp\app\modules\nbs-material.module.ts" />
+    <None Remove="ClientApp\app\services\app.service.ts" />
+    <None Remove="ClientApp\app\services\snake\snake-data.service.ts" />
+    <None Remove="ClientApp\app\shared\components\plotly\plotly.component.ts" />
+    <None Remove="yarn.lock" />
+    <Compile Remove="NewFolder\**" />
+    <Content Remove="NewFolder\**" />
+    <Content Remove="wwwroot\dist\**" />
+    <None Remove="ClientApp\dist\**" />
+    <None Remove="NewFolder\**" />
+    <Content Remove="coverage\**" />
+
+    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\assets\icons\apple-touch-icon-114x114.png" />
+    <Content Remove="wwwroot\assets\icons\apple-touch-icon-120x120.png" />
+    <Content Remove="wwwroot\assets\icons\apple-touch-icon-144x144.png" />
+    <Content Remove="wwwroot\assets\icons\apple-touch-icon-152x152.png" />
+    <Content Remove="wwwroot\assets\icons\apple-touch-icon-180x180.png" />
+    <Content Remove="wwwroot\assets\icons\apple-touch-icon-57x57.png" />
+    <Content Remove="wwwroot\assets\icons\apple-touch-icon-60x60.png" />
+    <Content Remove="wwwroot\assets\icons\apple-touch-icon-72x72.png" />
+    <Content Remove="wwwroot\assets\icons\apple-touch-icon-76x76.png" />
+    <Content Remove="wwwroot\assets\icons\favicon-16x16.png" />
+    <Content Remove="wwwroot\assets\icons\favicon-32x32.png" />
+    <Content Remove="wwwroot\assets\icons\favicon-96x96.png" />
+    <Content Remove="wwwroot\assets\icons\favicon.ico" />
+    <Content Remove="wwwroot\assets\icons\nbs-logo.svg" />
+    <Content Remove="wwwroot\assets\icons\simple-line-icons.svg" />
+    <Content Remove="wwwroot\assets\icons\symbol-defs.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\assets\icons\apple-touch-icon-114x114.png" />
+    <None Include="wwwroot\assets\icons\apple-touch-icon-120x120.png" />
+    <None Include="wwwroot\assets\icons\apple-touch-icon-144x144.png" />
+    <None Include="wwwroot\assets\icons\apple-touch-icon-152x152.png" />
+    <None Include="wwwroot\assets\icons\apple-touch-icon-180x180.png" />
+    <None Include="wwwroot\assets\icons\apple-touch-icon-57x57.png" />
+    <None Include="wwwroot\assets\icons\apple-touch-icon-60x60.png" />
+    <None Include="wwwroot\assets\icons\apple-touch-icon-72x72.png" />
+    <None Include="wwwroot\assets\icons\apple-touch-icon-76x76.png" />
+    <None Include="wwwroot\assets\icons\favicon-16x16.png" />
+    <None Include="wwwroot\assets\icons\favicon-32x32.png" />
+    <None Include="wwwroot\assets\icons\favicon-96x96.png" />
+    <None Include="wwwroot\assets\icons\favicon.ico" />
+    <None Include="wwwroot\assets\icons\nbs-logo.svg" />
+    <None Include="wwwroot\assets\icons\simple-line-icons.svg" />
+    <None Include="wwwroot\assets\icons\symbol-defs.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RPS.Application\RPS.Application.csproj" />
+    <ProjectReference Include="..\RPS.Data.Elasticsearch\RPS.Data.Elasticsearch.csproj" />
+    <ProjectReference Include="..\RPS.Data\RPS.Data.csproj" />
+    <ProjectReference Include="..\RPS.Domain\RPS.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app.constants.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\basic-layout\basic-layout.component.html" />
+    <TypeScriptCompile Include="ClientApp\app\components\basic-layout\basic-layout.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\basic-layout\basic-layout.component.scss" />
+    <TypeScriptCompile Include="ClientApp\app\components\menu-toggle\menu-toggle.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\snake\region.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\snake\region.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\top-decliners\top-decliners.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\top-performers\top-performers.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\dashboard\top-performers.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\snake\BarTrace.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\snake\GeographicalCountries.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\snake\GeographicalRegion.ts" />
+    <TypeScriptCompile Include="ClientApp\app\modules\nbs-material.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\app.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\snake\snake-data.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\components\plotly\plotly.component.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ClientApp\app\components\dashboard\" />
+    <Folder Include="ClientApp\app\services\rps\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="rpsData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+
+    <!-- In development, the dist files won't exist on the first run or when cloning to
+         a different machine, so rebuild them if not already present. -->
+    <Message Importance="high" Text="Performing first-run Webpack build..." />
+    <Exec Command="npm install" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js" />
+  </Target>
+  <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec Command="npm install" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --env.prod" />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="wwwroot\dist\**; ClientApp\dist\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+  <Target Name="CleanDist" AfterTargets="Clean">
+    <ItemGroup>
+      <FilesToDelete Include="ClientApp\dist\**; wwwroot\dist\**" />
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
+    <RemoveDir Directories="ClientApp\dist; wwwroot\dist" />
+  </Target>
+</Project>

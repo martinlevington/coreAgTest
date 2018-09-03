@@ -1,0 +1,28 @@
+<header>
+  <nbs-menu-toggle ></nbs-menu-toggle>
+  <span class="text-center logo-wrapper">
+    <mat-icon class="logo" svgIcon="nbs:symbol"></mat-icon>
+    <span class="product">NBS Resource Centre</span>
+  </span>
+  <span class="spacer"></span>
+</header>
+
+<mat-sidenav-container (backdropClick)="menuToggle.close()">
+  <mat-sidenav #sidenav [opened]="showMenu" (close)="onNavClose()" mode="push">
+    <router-outlet name="sidenav"></router-outlet>
+    <nbs-nav-panel></nbs-nav-panel>
+  </mat-sidenav>
+
+  <router-outlet></router-outlet>
+
+
+  <mat-grid-list cols="2" rowHeight="1:1" gutterSize="12px">
+    <mat-grid-tile><top-performers></top-performers></mat-grid-tile>
+    <mat-grid-tile><top-decliners></top-decliners></mat-grid-tile>
+    <mat-grid-tile><monthly-profile-average-score></monthly-profile-average-score></mat-grid-tile>
+    <mat-grid-tile><current-profile-average-score></current-profile-average-score></mat-grid-tile>
+  </mat-grid-list>
+ <p>&nbsp;</p>
+  
+
+</mat-sidenav-container>
