@@ -35,7 +35,7 @@
     "aspnet-prerendering": "^3.0.1",
     "aspnet-webpack": "^2.0.1",
     "awesome-typescript-loader": "^3.0.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^5.0.2",
     "bootstrap-sass": "^3.3.7",
     "core-js": "^2.5.1",
     "css": "^2.2.1",
