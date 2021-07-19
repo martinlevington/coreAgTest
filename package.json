@@ -29,7 +29,7 @@
     "@nguniversal/aspnetcore-engine": "^1.0.0-beta.2",
     "@ngx-translate/core": "^6.0.1",
     "@ngx-translate/http-loader": "0.0.3",
-    "@types/node": "^7.0.12",
+    "@types/node": "^16.3.3",
     "angular2-router-loader": "^0.3.5",
     "angular2-template-loader": "^0.6.2",
     "aspnet-prerendering": "^3.0.1",
